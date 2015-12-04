@@ -14,7 +14,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
             },
             link: function (scope, element, attrs) {
                 scope.getTemplateUrl = function () {
-                    return attrs.templateUrl ? attrs.templateUrl : 'Templates/kanban-board.html';
+                    return attrs.templateUrl ? attrs.templateUrl : 'dlhsoft-kanban-board.html';
                 }
             },
             template: '<ng-include src="getTemplateUrl()"></ng-include>',
