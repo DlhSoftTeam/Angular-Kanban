@@ -10,13 +10,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 groups: '=',
                 iterations: '=',
                 states: '=',
-                itemTypes: '='
+                itemTypes: '=',
+                templateUrl: '@'
             },
-            link: function (scope, element, attrs) {
-                scope.getTemplateUrl = function () {
-                    return attrs.templateUrl ? attrs.templateUrl : 'dlhsoft-kanban-board.html';
-                }
-            },
-            template: '<ng-include src="getTemplateUrl()"></ng-include>',
+            template: '<ng-include src="templateUrl ? templateUrl : \'ds-templates/kanban-board.html\'"></ng-include>',
         }
     });
