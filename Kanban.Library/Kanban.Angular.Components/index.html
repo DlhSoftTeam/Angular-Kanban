@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Kanban Board Sample</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="Scripts/angular.js"></script>
+    <script src="DlhSoft.Kanban.Angular.Components.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="KanbanBoardSample" ng-controller="MainController">
+    <h1>Kanban Board Sample</h1>
+    <ds:kanban-board items="items"
+                     template-url="Templates/kanban-board.html">...</ds:kanban-board>
+</body>
+</html>
