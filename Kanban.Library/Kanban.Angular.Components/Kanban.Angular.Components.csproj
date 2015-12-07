@@ -23,11 +23,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="ds-components\kanban-board.css" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="ds-templates\kanban-board.html" />
+    <Content Include="ds-components\kanban-board.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
