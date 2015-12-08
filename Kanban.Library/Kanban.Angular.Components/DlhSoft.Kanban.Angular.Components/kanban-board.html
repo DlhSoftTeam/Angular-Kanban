@@ -1,0 +1,20 @@
+﻿<div class="kanban-board container">
+    <div class="row states-row">
+        <div class="cell header row-header column-header content" ng-transclude></div>
+        <div ng-repeat="state in dskb.states" class="cell header column-header state-header">
+            {{ state.content }}
+        </div>
+    </div>
+    <div ng-repeat="group in dskb.groups" class="row group-row">
+        <div class="cell header row-header group-container">
+            <div class="group">
+                {{ group.content }}
+            </div>
+        </div>
+        <div ng-repeat="state in states" class="cell item-container">
+            <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item">
+                {{ item.content }}
+            </div>
+        </div>
+    </div>
+</div>

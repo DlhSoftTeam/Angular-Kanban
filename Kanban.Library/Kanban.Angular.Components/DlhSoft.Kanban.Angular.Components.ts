@@ -31,6 +31,6 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 }
             },
             controllerAs: 'dskb',
-            templateUrl: 'ds-components/kanban-board.html'
+            templateUrl: 'DlhSoft.Kanban.Angular.Components/kanban-board.html'
         }
     });
