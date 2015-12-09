@@ -11,7 +11,7 @@
                 {{ group.content }}
             </div>
         </div>
-        <div ng-repeat="state in states" class="cell item-container">
+        <div ng-repeat="state in dskb.states" class="cell item-container">
             <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item">
                 {{ item.content }}
             </div>
