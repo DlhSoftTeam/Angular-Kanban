@@ -28,11 +28,14 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
             bindToController: {
                 items: '=',
                 groups: '=',
-                states: '='
+                states: '=',
+                groupStates: '='
             },
             controller: function () {
                 if (!this.states)
                     this.states = DlhSoft.Controls.KanbanBoard.defaultStates;
+                if (!this.groupStates)
+                    this.groupStates = this.states;
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
             },
             controllerAs: 'dskb',

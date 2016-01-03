@@ -1,8 +1,8 @@
 ﻿/// <reference path='./DlhSoft.Kanban.Angular.Components.ts'/>
 
-var state1 = { content: 'New' }, state2 = { content: 'In progress' }, state3 = { content: 'Done' };
+var state1 = { content: 'New' }, state2 = { content: 'In progress' }, state3 = { content: 'Done', collapsed: true };
 var states = [state1, state2, state3];
-var group1 = { content: 'Story 1' }, group2 = { content: 'Story 2' };
+var group1 = { content: 'Story 1', state: state2 }, group2 = { content: 'Story 2', state: state3 };
 var groups = [group1, group2];
 var items = [
     { content: 'Task 1', group: group1, state: state1 },
