@@ -78,8 +78,6 @@
     border-top: 4px solid white;
 }
 .kanban-board .group-collapsed .group {
-    border: none;
-    background-color: #f0f0f0;
     margin-top: 4px;
 }
 .kanban-board * {
