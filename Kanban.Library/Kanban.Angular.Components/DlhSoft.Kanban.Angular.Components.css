@@ -26,6 +26,11 @@
 .kanban-board .cell.row-header {
     width: 100px;
 }
+.kanban-board .cell.row-header.toggle-button-area {
+    width: 4px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
 .kanban-board .header {
     margin: 4px;
     padding: 4px;
@@ -38,6 +43,10 @@
     border: solid 1px #0094ff;
     padding: 4px;
 }
+.kanban-board .group-row {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 .kanban-board .group-container {
     margin: 4px;
     padding: 0px;
@@ -46,6 +55,23 @@
     margin: 4px;
     border: solid 1px #ff6a00;
     padding: 4px;
+}
+.kanban-board .group-collapsed {
+    background-color: #f0f0f0;
+}
+.kanban-board .toggle-button-area {
+    width: 4px !important;
+}
+.kanban-board .toggle-button {
+    vertical-align: bottom;
+}
+.kanban-board .toggle-button-expanded {
+    stroke: #808080;
+    fill: #808080;
+}
+.kanban-board .toggle-button-collapsed {
+    stroke: #808080;
+    fill: #f0f0f0;
 }
 .kanban-board * {
     box-sizing: border-box;
