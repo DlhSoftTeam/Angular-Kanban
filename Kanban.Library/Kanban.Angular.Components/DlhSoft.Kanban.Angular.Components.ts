@@ -29,7 +29,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 items: '=',
                 groups: '=',
                 states: '=',
-                groupStates: '='
+                groupStates: '=',
+                itemHeight: '=',
+                groupHeight: '='
             },
             controller: function () {
                 if (!this.states)
@@ -37,6 +39,20 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 if (!this.groupStates)
                     this.groupStates = this.states;
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
+                this.getMaxItemCountInGroup = function (group) {
+                    var maxItemCount = 0;
+                    for (var i = 0; i < this.states.length; i++) {
+                        var state = this.states[i];
+                        var itemCount = this.getItemsInGroupAndState(group, state).length;
+                        if (itemCount > maxItemCount)
+                            maxItemCount = itemCount;
+                    }
+                    return maxItemCount;
+                };
+                if (!this.itemHeight)
+                    this.itemHeight = 32;
+                if (!this.groupHeight)
+                    this.groupHeight = this.itemHeight;
             },
             controllerAs: 'dskb',
             templateUrl: 'DlhSoft.Kanban.Angular.Components/kanban-board.html'

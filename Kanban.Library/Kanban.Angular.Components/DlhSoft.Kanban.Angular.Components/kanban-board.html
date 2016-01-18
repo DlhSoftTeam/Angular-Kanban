@@ -1,29 +1,33 @@
-﻿<div class="kanban-board container">
-    <div class="row states-row">
-        <div class="cell header row-header column-header toggle-button-area"></div>
-        <div class="cell header row-header column-header content" ng-transclude></div>
-        <div ng-repeat="state in dskb.states" class="cell header column-header state-header">
-            {{ state.content }}
-        </div>
-    </div>
-    <div ng-repeat="group in dskb.groups" class="row group-row {{ group.state.collapsed ? 'group-collapsed' : '' }}">
-        <div class="cell header row-header toggle-button-area" ng-click="group.state.collapsed = !group.state.collapsed;">
-            <svg ng-if="!group.state.collapsed" class="toggle-button" width="8" height="8">
-                <polygon points="1,7 7,7 7,1" class="toggle-button-expanded"/>
-            </svg>
-            <svg ng-if="group.state.collapsed" class="toggle-button" width="8" height="8">
-                <polygon points="0,0 6,4 0,8" class="toggle-button-collapsed"/>
-            </svg>
-        </div>
-        <div class="cell header row-header group-container">
-            <div class="group">
-                {{ group.content }}
-            </div>
-        </div>
-        <div ng-repeat="state in dskb.states" class="cell item-container">
-            <div ng-if="!group.state.collapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item">
-                {{ item.content }}
-            </div>
-        </div>
-    </div>
-</div>
+﻿<table class="kanban-board container" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr class="row states-row">
+            <td class="cell header row-header column-header toggle-button-area"></td>
+            <td class="cell header row-header column-header content" ng-transclude></td>
+            <td ng-repeat="state in dskb.states" class="cell header column-header state-header">
+                {{ state.content }}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="group in dskb.groups" class="row group-row {{ group.state.collapsed ? 'group-collapsed' : '' }}">
+            <td class="cell header row-header toggle-button-area" ng-click="group.state.collapsed = !group.state.collapsed;">
+                <svg ng-if="!group.state.collapsed" class="toggle-button" width="8" height="8">
+                    <polygon points="1,7 7,7 7,1" class="toggle-button-expanded" />
+                </svg>
+                <svg ng-if="group.state.collapsed" class="toggle-button" width="8" height="8">
+                    <polygon points="0,0 6,4 0,8" class="toggle-button-collapsed" />
+                </svg>
+            </td>
+            <td class="cell header row-header group-container">
+                <div class="group" style="height: {{ dskb.groupHeight }}px; overflow: auto">
+                    {{ group.content }}
+                </div>
+            </td>
+            <td ng-repeat="state in dskb.states" class="cell item-container" style="height: {{ (!group.state.collapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px">
+                <div ng-if="!group.state.collapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto">
+                    {{ item.content }}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -4,27 +4,12 @@
 .kanban-board .content {
     font-weight: bold;
 }
-.kanban-board .header {
-}
-.kanban-board .row-header {
-}
-.kanban-board .column-header {
-}
-.kanban-board .states-row {
-}
-.kanban-board .state-header {
-}
-.kanban-board .row {
-}
 .kanban-board .cell {
-    display: inline-block;
     vertical-align: top;
-}
-.kanban-board .cell {
-    width: 200px;
+    width: 250px;
 }
 .kanban-board .cell.row-header {
-    width: 100px;
+    width: 150px;
 }
 .kanban-board .cell.row-header.toggle-button-area {
     width: 4px;
@@ -39,31 +24,35 @@
     margin: 4px;
 }
 .kanban-board .item {
+    background-color: white;
     margin: 4px;
     border: solid 1px #0094ff;
     padding: 4px;
-}
-.kanban-board .group-row {
-    margin-top: 2px;
-    margin-bottom: 2px;
 }
 .kanban-board .group-container {
     margin: 4px;
     padding: 0px;
 }
 .kanban-board .group {
+    background-color: white;
     margin: 4px;
     border: solid 1px #ff6a00;
     padding: 4px;
+    margin-top: 12px;
 }
 .kanban-board .group-collapsed {
     background-color: #f0f0f0;
 }
-.kanban-board .toggle-button-area {
-    width: 4px !important;
+.kanban-board .group-collapsed .toggle-button-area {
+    border-top: 4px solid white;
 }
 .kanban-board .toggle-button {
-    vertical-align: bottom;
+    margin-top: 8px;
+    vertical-align: top;
+}
+.kanban-board .group-collapsed .toggle-button {
+    margin-top: 12px;
+    vertical-align: top;
 }
 .kanban-board .toggle-button-expanded {
     stroke: #808080;
@@ -72,6 +61,26 @@
 .kanban-board .toggle-button-collapsed {
     stroke: #808080;
     fill: #f0f0f0;
+}
+.kanban-board .cell.item-container {
+    background-color: #f0f0f0;
+    padding: 4px;
+    border-left: 4px solid white;
+    border-top: 4px solid white;
+}
+.kanban-board .group-collapsed .cell.item-container {
+    background-color: #f0f0f0;
+    margin-left: -6px;
+    padding-left: 6px;
+    border-left: none;
+}
+.kanban-board .group-collapsed .cell.group-container {
+    border-top: 4px solid white;
+}
+.kanban-board .group-collapsed .group {
+    border: none;
+    background-color: #f0f0f0;
+    margin-top: 4px;
 }
 .kanban-board * {
     box-sizing: border-box;
