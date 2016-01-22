@@ -1,0 +1,5 @@
+﻿<div>
+    <div>{{ group.content }}</div>
+    <div style="color: gray">{{ group.assignmentsContent }}</div>
+    <select ng-model="group.state" ng-options="groupState as groupState.content for groupState in dskb.groupStates"/>
+</div>

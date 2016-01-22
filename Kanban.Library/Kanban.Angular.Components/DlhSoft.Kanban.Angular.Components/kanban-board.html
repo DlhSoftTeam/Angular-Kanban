@@ -9,23 +9,23 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="group in dskb.groups" class="row group-row {{ group.state.collapsed ? 'group-collapsed' : '' }}">
-            <td class="cell header row-header toggle-button-area" ng-click="group.state.collapsed = !group.state.collapsed;">
-                <svg ng-if="!group.state.collapsed" class="toggle-button" width="8" height="8">
+        <tr ng-repeat="group in dskb.groups" class="row group-row {{ group.isCollapsed ? 'group-collapsed' : '' }}">
+            <td class="cell header row-header toggle-button-area" ng-click="group.isCollapsed = !group.isCollapsed">
+                <svg ng-if="!group.isCollapsed" class="toggle-button" width="8" height="8">
                     <polygon points="1,7 7,7 7,1" class="toggle-button-expanded" />
                 </svg>
-                <svg ng-if="group.state.collapsed" class="toggle-button" width="8" height="8">
+                <svg ng-if="group.isCollapsed" class="toggle-button" width="8" height="8">
                     <polygon points="0,0 6,4 0,8" class="toggle-button-collapsed" />
                 </svg>
             </td>
             <td class="cell header row-header group-container">
                 <div class="group" style="height: {{ dskb.groupHeight }}px; overflow: auto">
-                    {{ group.content }}
+                    <ng-include src="dskb.groupTemplateUrl"/>
                 </div>
             </td>
-            <td ng-repeat="state in dskb.states" class="cell item-container" style="height: {{ (!group.state.collapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px">
-                <div ng-if="!group.state.collapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto">
-                    {{ item.content }}
+            <td ng-repeat="state in dskb.states" class="cell item-container" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px">
+                <div ng-if="!group.isCollapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto">
+                    <ng-include src="dskb.itemTemplateUrl"/>
                 </div>
             </td>
         </tr>
