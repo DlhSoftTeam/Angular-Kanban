@@ -12,10 +12,10 @@
                 var item = this.items[i];
                 if (item.group == group && item.state == state) {
                     itemsInGroupAndState.push(item);
-                    if (typeof group.isCollapsed === 'undefined')
-                        group.isCollapsed = state.isCollapsedByDefault;
                 }
             }
+            if (typeof group.isCollapsed === 'undefined')
+                group.isCollapsed = group.state.isCollapsedByDefaultForGroups;
             return itemsInGroupAndState;
         }
     }
@@ -37,7 +37,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 groupHeight: '=',
                 itemTemplateUrl: '='
             },
-            controller: function () {
+            controller: function ($scope) {
                 if (!this.states)
                     this.states = DlhSoft.Controls.KanbanBoard.defaultStates;
                 if (!this.groupStates)
@@ -61,8 +61,66 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
                 if (!this.groupTemplateUrl)
                     this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-group.html';
+                this.onItemDrop = function (data, group, state) {
+                    var itemIndex = parseInt(data);
+                    var item = this.items[itemIndex];
+                    item.group = group;
+                    item.state = state;
+                    $scope.$apply();
+                };
             },
             controllerAs: 'dskb',
             templateUrl: 'DlhSoft.Kanban.Angular.Components/kanban-board.html'
         }
+    })
+    .directive('dsKanbanDraggableItem', function () {
+        return {
+            restrict: 'A',
+            scope: {
+                dragData: '@'
+            },
+            link: function (scope, element, attrs) {
+                element = element[0];
+                element.draggable = true;
+                element.addEventListener('dragstart', function (e) {
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', scope.dragData);
+                    e.stopPropagation();
+                    element.originalOpacity = element.style.opacity;
+                    element.style.opacity = 0.35;
+                });
+                element.addEventListener('dragend', function (e) {
+                    element.style.opacity = element.originalOpacity;
+                    delete element.originalOpacity;
+                });
+            }
+        };
+    })
+    .directive('dsKanbanDropZone', function () {
+        return {
+            restrict: 'A',
+            scope: {
+                dropHandler: '&'
+            },
+            link: function (scope, element, attrs) {
+                element = element[0];
+                element.addEventListener('dragover', onDragOver);
+                element.addEventListener('drop', onDrop);
+                scope.$on('$destroy', function () {
+                    element.removeEventListener('drop', onDrop);
+                    element.removeEventListener('dragover', onDragOver);
+                });
+                function onDragOver(event) {
+                    if (Array.prototype.slice.call(event.dataTransfer.types).indexOf('text/plain') < 0)
+                        return true;
+                    event.dataTransfer.dropEffect = 'move';
+                    event.preventDefault();
+                }
+                function onDrop(event) {
+                    var data = event.dataTransfer.getData('text/plain');
+                    scope.dropHandler({ data: data });
+                    event.preventDefault();
+                }
+            }
+        };
     });

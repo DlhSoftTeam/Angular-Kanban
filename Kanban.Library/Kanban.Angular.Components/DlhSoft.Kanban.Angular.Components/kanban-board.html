@@ -23,9 +23,11 @@
                     <ng-include src="dskb.groupTemplateUrl"/>
                 </div>
             </td>
-            <td ng-repeat="state in dskb.states" class="cell item-container" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px">
-                <div ng-if="!group.isCollapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto">
-                    <ng-include src="dskb.itemTemplateUrl"/>
+            <td ng-repeat="state in dskb.states" class="cell item-container">
+                <div ng-show="!group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state)">
+                    <div ng-if="!group.isCollapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}">
+                        <ng-include src="dskb.itemTemplateUrl" />
+                    </div>
                 </div>
             </td>
         </tr>
