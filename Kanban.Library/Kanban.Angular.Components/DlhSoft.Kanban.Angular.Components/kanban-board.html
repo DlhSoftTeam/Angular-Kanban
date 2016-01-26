@@ -19,15 +19,18 @@
                 </svg>
             </td>
             <td class="cell header row-header group-container">
-                <div class="group" style="height: {{ dskb.groupHeight }}px; overflow: auto">
+                <div class="group" style="height: {{ !group.isCollapsed ? dskb.groupHeight : dskb.collapsedGroupHeight }}px; overflow: auto">
                     <ng-include src="dskb.groupTemplateUrl"/>
                 </div>
             </td>
             <td ng-repeat="state in dskb.states" class="cell item-container">
-                <div ng-show="!group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) + 6 }}px" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state)">
-                    <div ng-if="!group.isCollapsed" ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}">
-                        <ng-include src="dskb.itemTemplateUrl" />
+                <div ng-show="!group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) }}px">
+                    <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state, dskb.items.indexOf(item))">
+                        <div class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}">
+                            <ng-include src="dskb.itemTemplateUrl" />
+                        </div>
                     </div>
+                    <div style="height: {{ (dskb.getMaxItemCountInGroup(group) - dskb.getItemsInGroupAndState(group, state).length) * (dskb.itemHeight + 4) }}px" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state)"></div>
                 </div>
             </td>
         </tr>

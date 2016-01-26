@@ -57,15 +57,21 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.itemHeight = 52;
                 if (!this.groupHeight)
                     this.groupHeight = 76;
+                if (!this.collapsedGroupHeight)
+                    this.collapsedGroupHeight = 30;
                 if (!this.itemTemplateUrl)
                     this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
                 if (!this.groupTemplateUrl)
                     this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-group.html';
-                this.onItemDrop = function (data, group, state) {
+                this.onItemDrop = function (data, group, state, targetItemIndex) {
                     var itemIndex = parseInt(data);
                     var item = this.items[itemIndex];
                     item.group = group;
                     item.state = state;
+                    if (typeof targetItemIndex !== 'undefined') {
+                        this.items.splice(itemIndex, 1);
+                        this.items.splice(targetItemIndex, 0, item);
+                    }
                     $scope.$apply();
                 };
             },
