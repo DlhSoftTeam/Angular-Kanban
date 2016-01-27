@@ -1,5 +1,6 @@
 ﻿module DlhSoft.Controls {
     export module KanbanBoard {
+        export var defaultGroup = {};
         export var defaultStates = [
             { content: 'New' },
             { content: 'Active' },
@@ -15,7 +16,7 @@
                 }
             }
             if (typeof group.isCollapsed === 'undefined')
-                group.isCollapsed = group.state.isCollapsedByDefaultForGroups;
+                group.isCollapsed = group.state ? group.state.isCollapsedByDefaultForGroups : false;
             return itemsInGroupAndState;
         }
     }
@@ -30,18 +31,31 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
             transclude: true,
             bindToController: {
                 items: '=',
-                groups: '=',
-                states: '=',
-                groupStates: '=',
-                itemHeight: '=',
-                groupHeight: '=',
-                itemTemplateUrl: '='
+                groups: '=?',
+                states: '=?',
+                groupStates: '=?',
+                itemHeight: '=?',
+                groupHeight: '=?',
+                itemTemplateUrl: '=?'
             },
             controller: function ($scope) {
+                if (!this.groups) {
+                    for (var i = 0; i < this.items.length; i++)
+                        this.items[i].group = DlhSoft.Controls.KanbanBoard.defaultGroup;
+                    this.groups = [DlhSoft.Controls.KanbanBoard.defaultGroup];
+                    this.hideGroups = true;
+                }
                 if (!this.states)
                     this.states = DlhSoft.Controls.KanbanBoard.defaultStates;
                 if (!this.groupStates)
                     this.groupStates = this.states;
+                for (var i = 0; i < this.items.length; i++) {
+                    var item = this.items[i];
+                    if (!item.group || this.groups.indexOf(item.group) < 0)
+                        item.group = this.groups[0];
+                    if (!item.state || this.states.indexOf(item.state) < 0)
+                        item.state = this.states[0];
+                }
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
                 this.getMaxItemCountInGroup = function (group) {
                     var maxItemCount = 0;

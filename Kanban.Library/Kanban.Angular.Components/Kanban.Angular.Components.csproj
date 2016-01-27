@@ -27,10 +27,10 @@
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
     <Content Include="index.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

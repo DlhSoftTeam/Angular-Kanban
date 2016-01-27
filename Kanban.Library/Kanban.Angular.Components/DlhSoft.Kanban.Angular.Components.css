@@ -48,6 +48,7 @@
 }
 .kanban-board .toggle-button {
     margin-top: 8px;
+    margin-bottom: 8px;
     vertical-align: top;
 }
 .kanban-board .group-collapsed .toggle-button {

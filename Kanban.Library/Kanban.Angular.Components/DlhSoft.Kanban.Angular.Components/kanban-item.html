@@ -1,4 +1,4 @@
 ﻿<div>
     <div>{{ item.content }}</div>
-    <div style="color: gray">{{ item.assignmentsContent }}</div>
+    <div ng-if="item.assignmentsContent" style="color: gray">{{ item.assignmentsContent }}</div>
 </div>
