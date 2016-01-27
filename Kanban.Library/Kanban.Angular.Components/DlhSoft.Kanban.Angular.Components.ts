@@ -2,10 +2,10 @@
     export module KanbanBoard {
         export var defaultGroup = {};
         export var defaultStates = [
-            { content: 'New' },
-            { content: 'Active' },
-            { content: 'Resolved' },
-            { content: 'Closed' }
+            { name: 'New', isNewItemButtonShown: true },
+            { name: 'Active' },
+            { name: 'Resolved' },
+            { name: 'Closed' }
         ];
         export function getItemsInGroupAndState(group, state) {
             var itemsInGroupAndState = [];
@@ -18,7 +18,7 @@
             if (typeof group.isCollapsed === 'undefined')
                 group.isCollapsed = group.state ? group.state.isCollapsedByDefaultForGroups : false;
             return itemsInGroupAndState;
-        }
+        };
     }
 }
 
@@ -36,7 +36,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 groupStates: '=?',
                 itemHeight: '=?',
                 groupHeight: '=?',
-                itemTemplateUrl: '=?'
+                itemTemplateUrl: '=?',
+                newItemName: '=?'
             },
             controller: function ($scope) {
                 if (!this.groups) {
@@ -57,26 +58,30 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                         item.state = this.states[0];
                 }
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
-                this.getMaxItemCountInGroup = function (group) {
-                    var maxItemCount = 0;
+                this.getMaxStateInGroup = function (group) {
+                    var maxState, maxItemCount = 0;
                     for (var i = 0; i < this.states.length; i++) {
                         var state = this.states[i];
                         var itemCount = this.getItemsInGroupAndState(group, state).length;
-                        if (itemCount > maxItemCount)
+                        if (itemCount > maxItemCount) {
+                            maxState = state;
                             maxItemCount = itemCount;
+                        }
                     }
-                    return maxItemCount;
+                    return maxState;
                 };
                 if (!this.itemHeight)
-                    this.itemHeight = 52;
+                    this.itemHeight = 58;
                 if (!this.groupHeight)
-                    this.groupHeight = 76;
+                    this.groupHeight = 80;
                 if (!this.collapsedGroupHeight)
-                    this.collapsedGroupHeight = 30;
+                    this.collapsedGroupHeight = 35;
                 if (!this.itemTemplateUrl)
                     this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
                 if (!this.groupTemplateUrl)
                     this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-group.html';
+                if (!this.stateTemplateUrl)
+                    this.stateTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-state.html';
                 this.onItemDrop = function (data, group, state, targetItemIndex) {
                     var itemIndex = parseInt(data);
                     var item = this.items[itemIndex];
@@ -87,6 +92,12 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                         this.items.splice(targetItemIndex, 0, item);
                     }
                     $scope.$apply();
+                };
+                if (!this.newItemName)
+                    this.newItemName = 'New item';
+                this.addNewItem = function (group, state) {
+                    var item = { name: this.newItemName, group: group, state: state };
+                    this.items.push(item);
                 };
             },
             controllerAs: 'dskb',
@@ -105,7 +116,6 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
                     e.dataTransfer.setData('text/plain', scope.dragData);
-                    e.stopPropagation();
                     element.originalOpacity = element.style.opacity;
                     element.style.opacity = 0.35;
                 });
@@ -120,7 +130,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
         return {
             restrict: 'A',
             scope: {
-                dropHandler: '&'
+                onDrop: '&'
             },
             link: function (scope, element, attrs) {
                 element = element[0];
@@ -138,8 +148,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 }
                 function onDrop(event) {
                     var data = event.dataTransfer.getData('text/plain');
-                    scope.dropHandler({ data: data });
-                    event.preventDefault();
+                    scope.onDrop({ data: data });
                 }
             }
         };

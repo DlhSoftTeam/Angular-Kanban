@@ -81,6 +81,19 @@
 .kanban-board .group-collapsed .group {
     margin-top: 4px;
 }
+.kanban-board .newItemButton {
+    margin: 4px;
+    font-size: smaller;
+    text-decoration: none;
+}
+.kanban-board input, .kanban-board select {
+    border-style: none;
+}
+.kanban-board input {
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
 .kanban-board * {
     box-sizing: border-box;
 }

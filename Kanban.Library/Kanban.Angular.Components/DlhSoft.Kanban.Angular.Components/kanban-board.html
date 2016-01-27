@@ -4,7 +4,7 @@
             <td class="cell header row-header column-header toggle-button-area"></td>
             <td ng-if="!dskb.hideGroups" class="cell header row-header column-header content" ng-transclude></td>
             <td ng-repeat="state in dskb.states" class="cell header column-header state-header">
-                {{ state.content }}
+                <ng-include src="dskb.stateTemplateUrl" />
             </td>
         </tr>
     </thead>
@@ -24,13 +24,15 @@
                 </div>
             </td>
             <td ng-repeat="state in dskb.states" class="cell item-container">
-                <div ng-hide="group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getMaxItemCountInGroup(group) : 1) * (dskb.itemHeight + 4) }}px">
-                    <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state, dskb.items.indexOf(item))">
+                <div ng-hide="group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length : 1) * (dskb.itemHeight + 4) + (dskb.getMaxStateInGroup(group).isNewItemButtonShown ? 24 : 0) }}px">
+                    <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone on-drop="dskb.onItemDrop(data, group, state, dskb.items.indexOf(item))">
                         <div class="item" style="height: {{ dskb.itemHeight }}px; overflow: auto" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}">
                             <ng-include src="dskb.itemTemplateUrl" />
                         </div>
                     </div>
-                    <div style="height: {{ (dskb.getMaxItemCountInGroup(group) - dskb.getItemsInGroupAndState(group, state).length) * (dskb.itemHeight + 4) }}px" ds:kanban-drop-zone drop-handler="dskb.onItemDrop(data, group, state)"></div>
+                    <div style="height: {{ (dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * (dskb.itemHeight + 4) + (dskb.getMaxStateInGroup(group).isNewItemButtonShown ? 24 : 0) }}px" ds:kanban-drop-zone on-drop="dskb.onItemDrop(data, group, state)">
+                        <a ng-if="state.isNewItemButtonShown" href="javascript://" class="newItemButton" ng-click="dskb.addNewItem(group, state)">New item</a>
+                    </div>
                 </div>
             </td>
         </tr>
