@@ -4,7 +4,7 @@
             <td class="cell header row-header column-header toggle-button-area"></td>
             <td ng-if="!dskb.hideGroups" class="cell header row-header column-header content" ng-transclude></td>
             <td ng-repeat="state in dskb.states" class="cell header column-header state-header">
-                <ng-include src="dskb.stateTemplateUrl" />
+                <ng-include src="dskb.stateTemplateUrl"/>
             </td>
         </tr>
     </thead>
@@ -12,10 +12,10 @@
         <tr ng-repeat="group in dskb.groups" class="row group-row {{ group.isCollapsed ? 'group-collapsed' : '' }}">
             <td class="cell header row-header toggle-button-area" ng-click="group.isCollapsed = !group.isCollapsed">
                 <svg ng-if="!group.isCollapsed" class="toggle-button" width="8" height="8">
-                    <polygon points="1,7 7,7 7,1" class="toggle-button-expanded" />
+                    <polygon points="1,7 7,7 7,1" class="toggle-button-expanded"/>
                 </svg>
                 <svg ng-if="group.isCollapsed" class="toggle-button" width="8" height="8">
-                    <polygon points="0,0 6,4 0,8" class="toggle-button-collapsed" />
+                    <polygon points="0,0 6,4 0,8" class="toggle-button-collapsed"/>
                 </svg>
             </td>
             <td ng-if="!dskb.hideGroups" class="cell header row-header group-container">
@@ -27,11 +27,13 @@
                 <div ng-hide="group.isCollapsed" style="height: {{ (!group.isCollapsed ? dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length : 1) * dskb.itemHeight + (!dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 20 : 0) + 4 }}px">
                     <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone on-drop="dskb.onItemDrop(data, group, state, dskb.items.indexOf(item))">
                         <div style="height: {{ dskb.itemHeight }}px; overflow: hidden">
-                            <ng-include src="dskb.itemTemplateUrl" />
+                            <ng-include src="dskb.itemTemplateUrl"/>
                         </div>
                     </div>
                     <div style="height: {{ (dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * dskb.itemHeight + (!dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 20 : 0) + 4 }}px" ds:kanban-drop-zone on-drop="dskb.onItemDrop(data, group, state)">
-                        <a ng-hide="state.isNewItemButtonHidden" href="javascript://" class="newItemButton" ng-click="dskb.addNewItem(group, state)">New item</a>
+                        <a ng-hide="state.isNewItemButtonHidden" href="javascript://" class="newItemButton" ng-click="dskb.addNewItem(group, state)">
+                            <ng-include src="dskb.newItemButtonTemplateUrl"/>
+                        </a>
                     </div>
                 </div>
             </td>

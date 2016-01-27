@@ -83,6 +83,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-group.html';
                 if (!this.stateTemplateUrl)
                     this.stateTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-state.html';
+                if (!this.newItemButtonTemplateUrl)
+                    this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
                 this.onItemDrop = function (data, group, state, targetItemIndex) {
                     var itemIndex = parseInt(data);
                     var item = this.items[itemIndex];
