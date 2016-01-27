@@ -1,5 +1,5 @@
-﻿<div>
-    <div><input type="text" ng-model="group.name" /></div>
-    <div ng-hide="group.isCollapsed" style="color: gray"><input type="text" ng-model="group.assignment" /></div>
+﻿<div class="group">
+    <div><input type="text" ng-model="group.name"/></div>
+    <div ng-hide="group.isCollapsed" style="color: gray"><input type="text" ng-model="group.assignment" style="color: gray"/></div>
     <select ng-hide="group.isCollapsed" ng-model="group.state" ng-options="groupState as groupState.name for groupState in dskb.groupStates"/>
 </div>

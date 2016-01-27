@@ -1,4 +1,13 @@
 ﻿<div>
-    <div><input type="text" ng-model="item.name"/></div>
-    <div style="color: gray"><input type="text" ng-model="item.assignment"/></div>
+    <div class="item" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}" highlight-parent="true">
+        <div style="height: 20px">{{item.name}}</div>
+        <div style="height: 20px; color: gray">{{item.assignment}}</div>
+    </div>
+    <div style="position: relative; top: -56px; margin: 8px">
+        <div style="height: 20px"><input type="text" ng-model="item.name"/></div>
+        <div style="heightL 20px"><input type="text" ng-model="item.assignment" style="color: gray"/></div>
+    </div>
+    <div style="position: relative; top: -112px; margin: 8px; text-align: right">
+        <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" style="text-decoration: none" ng-click="dskb.onEditItem({item: item})">…</a>
+    </div>
 </div>

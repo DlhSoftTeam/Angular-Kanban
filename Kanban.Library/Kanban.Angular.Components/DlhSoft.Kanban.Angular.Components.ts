@@ -2,10 +2,10 @@
     export module KanbanBoard {
         export var defaultGroup = {};
         export var defaultStates = [
-            { name: 'New', isNewItemButtonShown: true },
-            { name: 'Active' },
-            { name: 'Resolved' },
-            { name: 'Closed' }
+            { name: 'New' },
+            { name: 'Active', isNewItemButtonHidden: true },
+            { name: 'Resolved', isNewItemButtonHidden: true },
+            { name: 'Closed', isNewItemButtonHidden: true }
         ];
         export function getItemsInGroupAndState(group, state) {
             var itemsInGroupAndState = [];
@@ -37,7 +37,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 itemHeight: '=?',
                 groupHeight: '=?',
                 itemTemplateUrl: '=?',
-                newItemName: '=?'
+                newItemName: '=?',
+                onEditItem: '&?'
             },
             controller: function ($scope) {
                 if (!this.groups) {
@@ -71,11 +72,11 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     return maxState;
                 };
                 if (!this.itemHeight)
-                    this.itemHeight = 58;
+                    this.itemHeight = 54;
                 if (!this.groupHeight)
-                    this.groupHeight = 80;
+                    this.groupHeight = 90;
                 if (!this.collapsedGroupHeight)
-                    this.collapsedGroupHeight = 35;
+                    this.collapsedGroupHeight = 38;
                 if (!this.itemTemplateUrl)
                     this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
                 if (!this.groupTemplateUrl)
@@ -108,20 +109,24 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
         return {
             restrict: 'A',
             scope: {
-                dragData: '@'
+                dragData: '@',
+                highlightParent: '@?'
             },
             link: function (scope, element, attrs) {
+                var parentElement = scope.highlightParent ? element.parent()[0] : null;
                 element = element[0];
+                if (!parentElement)
+                    parentElement = element;
                 element.draggable = true;
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
                     e.dataTransfer.setData('text/plain', scope.dragData);
-                    element.originalOpacity = element.style.opacity;
-                    element.style.opacity = 0.35;
+                    parentElement.originalOpacity = parentElement.style.opacity;
+                    parentElement.style.opacity = 0.35;
                 });
                 element.addEventListener('dragend', function (e) {
-                    element.style.opacity = element.originalOpacity;
-                    delete element.originalOpacity;
+                    parentElement.style.opacity = parentElement.originalOpacity;
+                    delete parentElement.originalOpacity;
                 });
             }
         };
@@ -141,9 +146,6 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     element.removeEventListener('dragover', onDragOver);
                 });
                 function onDragOver(event) {
-                    if (Array.prototype.slice.call(event.dataTransfer.types).indexOf('text/plain') < 0)
-                        return true;
-                    event.dataTransfer.dropEffect = 'move';
                     event.preventDefault();
                 }
                 function onDrop(event) {

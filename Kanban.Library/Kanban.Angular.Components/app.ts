@@ -1,6 +1,6 @@
 ﻿/// <reference path='./DlhSoft.Kanban.Angular.Components.ts'/>
 
-var state1 = { name: 'New', isNewItemButtonShown: true }, state2 = { name: 'In progress' }, state3 = { name: 'Done', isCollapsedByDefaultForGroups: true };
+var state1 = { name: 'New' }, state2 = { name: 'In progress', isNewItemButtonHidden: true }, state3 = { name: 'Done', isCollapsedByDefaultForGroups: true, isNewItemButtonHidden: true };
 var states = [state1, state2, state3];
 var group1 = { name: 'Story 1', state: state2, assignment: 'Resource 1' }, group2 = { name: 'Story 2', state: state3, assignment: 'Resource 2' };
 var groups = [group1, group2];
@@ -21,4 +21,5 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
         $scope.states = states;
         $scope.groups = groups;
         $scope.items = items;
+        $scope.onEditItem = (item) => { alert('Editing ' + item.name); };
     }]);
