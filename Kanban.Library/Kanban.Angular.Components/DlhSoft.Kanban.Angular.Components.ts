@@ -99,6 +99,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 this.addNewItem = function (group, state) {
                     var item = { name: this.newItemName, group: group, state: state };
                     this.items.push(item);
+                    if (this.onEditItem != null)
+                        setTimeout(() => { this.onEditItem({ item: item }); });
                 };
             },
             controllerAs: 'dskb',
