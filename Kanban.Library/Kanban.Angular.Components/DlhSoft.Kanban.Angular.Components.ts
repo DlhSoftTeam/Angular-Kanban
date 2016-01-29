@@ -72,9 +72,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     return maxState;
                 };
                 if (!this.itemHeight)
-                    this.itemHeight = 54;
+                    this.itemHeight = 52;
                 if (!this.groupHeight)
-                    this.groupHeight = 90;
+                    this.groupHeight = 82;
                 if (!this.collapsedGroupHeight)
                     this.collapsedGroupHeight = 38;
                 if (!this.itemTemplateUrl)
@@ -126,7 +126,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     e.dataTransfer.effectAllowed = 'move';
                     e.dataTransfer.setData('text/plain', scope.dragData);
                     parentElement.originalOpacity = parentElement.style.opacity;
-                    parentElement.style.opacity = 0.35;
+                    setTimeout(function () {
+                        parentElement.style.opacity = 0.35;
+                    });
                 });
                 element.addEventListener('dragend', function (e) {
                     parentElement.style.opacity = parentElement.originalOpacity;

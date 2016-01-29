@@ -1,13 +1,20 @@
 ﻿<div>
     <div class="item" ds:kanban-draggable-item drag-data="{{ dskb.items.indexOf(item) }}" highlight-parent="true">
-        <div style="height: 20px; font-size: smaller">{{item.name}}</div>
-        <div style="height: 20px; color: gray; font-size: smaller">{{item.assignment}}</div>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="item-gripper">&nbsp;</td>
+                <td class="item-content">
+                    <div class="item-property">{{item.name}}</div>
+                    <div class="item-property item-property-secondary">{{item.assignment}}</div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div style="position: relative; top: -56px; margin: 8px">
-        <div style="height: 20px; margin-right: 12px"><input type="text" ng-model="item.name"/></div>
-        <div style="height: 20px; margin-right: 12px"><input type="text" ng-model="item.assignment" style="color: gray"/></div>
+    <div class="item-editors-area">
+        <div class="item-property item-property-editor"><input type="text" ng-model="item.name" /></div>
+        <div class="item-property item-property-editor"><input type="text" ng-model="item.assignment" class="item-property-secondary"/></div>
     </div>
-    <div style="position: relative; top: -112px; margin: 8px; text-align: right">
-        <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" style="text-decoration: none" ng-click="dskb.onEditItem({item: item})">…</a>
+    <div class="item-edit-button-area">
+        <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditItem({item: item})">…</a>
     </div>
 </div>

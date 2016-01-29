@@ -25,9 +25,9 @@
 }
 .kanban-board .item {
     background-color: white;
-    margin: 4px;
-    border: solid 1px #0094ff;
-    padding: 4px;
+    margin: 0px;
+    border: solid 1px #c0c0c0;
+    padding: 0px;
 }
 .kanban-board .group-container {
     margin: 4px;
@@ -35,10 +35,11 @@
 }
 .kanban-board .group {
     background-color: white;
-    margin: 4px;
-    border: solid 1px #ff6a00;
-    padding: 4px;
-    margin-top: 12px;
+    margin: 0px;
+    border: solid 1px #c0c0c0;
+    padding: 0px;
+    margin-top: 8px;
+    margin-left: 2px;
 }
 .kanban-board .group-collapsed {
     background-color: #f0f0f0;
@@ -81,18 +82,54 @@
 .kanban-board .group-collapsed .group {
     margin-top: 4px;
 }
-.kanban-board .newItemButton {
-    margin: 4px;
+.kanban-board .item-content {
+    width: 100%;
+    padding: 4px 6px;
+}
+.kanban-board .item-gripper {
+    width: 12px;
+    background-color: #ffd800;
+    cursor: move;
+}
+.kanban-board .group-content {
+    width: 100%;
+    padding: 4px 2px;
+}
+.kanban-board .group-gripper {
+    width: 12px;
+    background-color: #0094ff;
+}
+.kanban-board .item-editors-area {
+    position: relative; 
+    top: -44px; 
+    left: 8px; 
+}
+.kanban-board .item-edit-button-area {
+    position: relative; 
+    top: -104px;
+    margin: 5px; 
+    text-align: right;
+}
+.kanban-board .item-property {
+    height: 20px; 
     font-size: smaller;
-    text-decoration: none;
+}
+.kanban-board .item-property-secondary {
+    color: gray; 
+}
+.kanban-board .item-property-editor {
+    margin-right: 10px;
 }
 .kanban-board input, .kanban-board select {
+    width: 100%;
     border-style: none;
 }
 .kanban-board input {
-    width: 100%;
     padding-left: 2px;
     padding-right: 2px;
+}
+.kanban-board a {
+    text-decoration: none;
 }
 .kanban-board * {
     box-sizing: border-box;
