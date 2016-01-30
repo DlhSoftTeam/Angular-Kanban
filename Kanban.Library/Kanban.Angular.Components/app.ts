@@ -7,6 +7,7 @@ var groups = [group1, group2];
 var items = [
     { name: 'Task 1', group: group1, state: state1, assignment: 'Resource 1' },
     { name: 'Task 2', group: group1, state: state2, assignment: 'Resource 1' },
+    { name: 'Bug 1', group: group1, state: state2, assignment: 'Resource 1', type: DlhSoft.Controls.KanbanBoard.defaultTypes.bug },
     { name: 'Task 3', group: group1, state: state1, assignment: 'Resource 2' },
     { name: 'Task 4', group: group1, state: state1, assignment: 'Resource 1' },
     { name: 'Task 5', group: group2, state: state1, assignment: 'Resource 2' },

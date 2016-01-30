@@ -1,5 +1,5 @@
 ﻿.kanban-board.container {
-    margin: -8px;
+    width: 100%;
 }
 .kanban-board .content {
     font-weight: bold;
@@ -12,7 +12,7 @@
     width: 150px;
 }
 .kanban-board .cell.row-header.toggle-button-area {
-    width: 4px;
+    width: 0.01%;
     margin-right: 0px;
     padding-right: 0px;
 }
@@ -88,37 +88,40 @@
 }
 .kanban-board .item-gripper {
     width: 12px;
-    background-color: #ffd800;
     cursor: move;
 }
 .kanban-board .group-content {
     width: 100%;
-    padding: 4px 2px;
+    padding: 4px;
 }
 .kanban-board .group-gripper {
     width: 12px;
-    background-color: #0094ff;
 }
 .kanban-board .item-editors-area {
     position: relative; 
     top: -44px; 
-    left: 8px; 
+    left: 8px;
 }
 .kanban-board .item-edit-button-area {
     position: relative; 
     top: -104px;
-    margin: 5px; 
-    text-align: right;
+    margin: 7px 4px; 
+    float: right;
 }
 .kanban-board .item-property {
-    height: 20px; 
+    height: 20px;
     font-size: smaller;
 }
 .kanban-board .item-property-secondary {
     color: gray; 
 }
 .kanban-board .item-property-editor {
-    margin-right: 10px;
+    margin-left: 1px;
+    margin-right: 9px;
+}
+.kanban-board .button {
+    font-size: smaller;
+    padding: 1px;
 }
 .kanban-board input, .kanban-board select {
     width: 100%;

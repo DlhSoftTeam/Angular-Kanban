@@ -5,8 +5,16 @@
             { name: 'New' },
             { name: 'Active', isNewItemButtonHidden: true },
             { name: 'Resolved', isNewItemButtonHidden: true },
-            { name: 'Closed', isNewItemButtonHidden: true }
-        ];
+            { name: 'Closed', isNewItemButtonHidden: true }];
+        export var defaultTypes = {
+            task: { color: '#ffd800' },
+            bug: { color: '#ca3838' },
+            story: { color: '#0094ff' },
+            feature: { color: '#67157b' },
+            epic: { color: '#ff6a00' }
+        };
+        export var defaultItemType = defaultTypes.task;
+        export var defaultGroupType = defaultTypes.story;
         export function getItemsInGroupAndState(group, state) {
             var itemsInGroupAndState = [];
             for (var i = 0; i < this.items.length; i++) {
@@ -33,7 +41,12 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 items: '=',
                 groups: '=?',
                 states: '=?',
+                types: '=?',
+                defaultItemType: '=?',
+                defaultGroupType: '=?',
                 groupStates: '=?',
+                groupWidth: '=?',
+                stateWidth: '=?',
                 itemHeight: '=?',
                 groupHeight: '=?',
                 itemTemplateUrl: '=?',
@@ -58,6 +71,12 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     if (!item.state || this.states.indexOf(item.state) < 0)
                         item.state = this.states[0];
                 }
+                if (!this.types)
+                    this.types = DlhSoft.Controls.KanbanBoard.defaultTypes;
+                if (!this.defaultItemType)
+                    this.defaultItemType = DlhSoft.Controls.KanbanBoard.defaultItemType;
+                if (!this.defaultGroupType)
+                    this.defaultGroupType = DlhSoft.Controls.KanbanBoard.defaultGroupType;
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
                 this.getMaxStateInGroup = function (group) {
                     var maxState, maxItemCount = 0;
@@ -71,6 +90,10 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     }
                     return maxState;
                 };
+                if (!this.groupWidth)
+                    this.groupWidth = '50%';
+                if (!this.stateWidth)
+                    this.stateWidth = '100%';
                 if (!this.itemHeight)
                     this.itemHeight = 52;
                 if (!this.groupHeight)
