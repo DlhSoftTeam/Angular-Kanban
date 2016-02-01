@@ -41,6 +41,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 items: '=',
                 groups: '=?',
                 states: '=?',
+                assignableResources: '=?',
                 types: '=?',
                 defaultItemType: '=?',
                 defaultGroupType: '=?',
@@ -50,8 +51,11 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 itemHeight: '=?',
                 groupHeight: '=?',
                 itemTemplateUrl: '=?',
+                stateLabel: '=?',
                 newItemName: '=?',
-                onEditItem: '&?'
+                newItemResource: '=?',
+                onAddingNewItem: '&?',
+                onEditingItem: '&?'
             },
             controller: function ($scope) {
                 if (!this.groups) {
@@ -119,13 +123,15 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     }
                     $scope.$apply();
                 };
+                if (!this.stateLabel)
+                    this.stateLabel = 'State';
                 if (!this.newItemName)
                     this.newItemName = 'New item';
                 this.addNewItem = function (group, state) {
-                    var item = { name: this.newItemName, group: group, state: state };
+                    var item = { name: this.newItemName, group: group, state: state, assignedResource: this.newItemResource };
                     this.items.push(item);
-                    if (this.onEditItem != null)
-                        setTimeout(() => { this.onEditItem({ item: item }); });
+                    if (this.onAddingNewItem != null)
+                        this.onAddingNewItem({ item: item });
                 };
             },
             controllerAs: 'dskb',
@@ -147,7 +153,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 element.draggable = true;
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text/plain', scope.dragData);
+                    e.dataTransfer.setData('application/json', scope.dragData);
                     parentElement.originalOpacity = parentElement.style.opacity;
                     setTimeout(function () {
                         parentElement.style.opacity = 0.35;
@@ -178,7 +184,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     event.preventDefault();
                 }
                 function onDrop(event) {
-                    var data = event.dataTransfer.getData('text/plain');
+                    var data = event.dataTransfer.getData('application/json');
                     scope.onDrop({ data: data });
                 }
             }

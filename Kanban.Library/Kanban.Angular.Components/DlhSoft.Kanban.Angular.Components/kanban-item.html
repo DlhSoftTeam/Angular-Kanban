@@ -4,18 +4,30 @@
             <tr>
                 <td class="item-gripper" style="background-color: {{ item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }}">&nbsp;</td>
                 <td class="item-content">
-                    <div class="item-property item-property-editor"><input type="text" ng-model="item.name"/></div>
-                    <div class="item-property item-property-editor"><input type="text" ng-model="item.assignment" class="item-property-secondary"/></div>
+                    <div class="item-property item-property-editor"><input type="text" ng-model="item.name" readonly="readonly"/></div>
+                    <div class="item-property item-property-editor">
+                        <img ng-if="dskb.assignableResources && item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
+                        <input ng-model="dskb.assignableResources ? item.assignedResource.name : null" ng-model-options="{ getterSetter: true }" readonly="readonly" class="item-property-secondary"/>
+                    </div>
                 </td>
             </tr>
         </table>
     </div>
     <div class="item-editors-area">
         <div class="item-property item-property-editor"><input type="text" ng-model="item.name"/></div>
-        <div class="item-property item-property-editor"><input type="text" ng-model="item.assignment" class="item-property-secondary"/></div>
+        <table cellpadding="0" cellspacing="0" ng-if="dskb.assignableResources" class="item-property item-property-editor item-property-table">
+            <tr>
+                <td>
+                    <img ng-if="item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
+                </td>
+                <td class="item-property-table">
+                    <select ng-model="item.assignedResource" ng-options="resource as resource.name for resource in dskb.assignableResources" class="item-property-secondary"></select>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="item-edit-button-area">
-        <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditItem({item: item})">
+        <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})">
             <div class="button">…</div>
         </a>
     </div>
