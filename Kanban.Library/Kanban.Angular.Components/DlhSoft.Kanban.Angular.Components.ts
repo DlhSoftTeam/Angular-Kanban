@@ -163,7 +163,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 dragData: '@',
                 highlightParent: '@?'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 var parentElement = scope.highlightParent ? element.parent()[0] : null;
                 element = element[0];
                 if (!parentElement)
@@ -190,7 +190,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
             scope: {
                 onDrop: '&'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 element = element[0];
                 element.addEventListener('dragover', onDragOver);
                 element.addEventListener('drop', onDrop);
