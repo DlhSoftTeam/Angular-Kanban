@@ -82,6 +82,9 @@
 .kanban-board .group-collapsed .group {
     margin-top: 4px;
 }
+.kanban-board .content-box {
+    overflow: hidden;
+}
 .kanban-board .item-content {
     width: 100%;
     padding: 4px 2px;
@@ -104,17 +107,17 @@
     margin-right: 14px;
 }
 .kanban-board .item-edit-button-area {
-    position: relative; 
-    top: -104px;
-    margin: 7px 4px; 
     float: right;
+    margin-top: -3px;
+    margin-right: -4px;
 }
 .kanban-board .item-property {
     height: 20px;
     font-size: smaller;
+    overflow: hidden;
 }
 .kanban-board .item-property-secondary {
-    color: gray; 
+    color: gray;
 }
 .kanban-board .item-property-editor {
     margin-left: 1px;
@@ -127,7 +130,7 @@
 }
 .kanban-board .item-property-image {
     float: left;
-    margin: 1px 2px;
+    margin: 1px;
     height: 18px;
 }
 .kanban-board .item-property-table {
@@ -135,7 +138,12 @@
 }
 .kanban-board .button {
     font-size: smaller;
-    padding: 1px;
+    border: 1px solid #c0c0c0;
+    background-color: #f8f8f8;
+    padding: 2px 6px;
+}
+.kanban-board .button:hover {
+    border: 1px solid #84cbff;
 }
 .kanban-board input, .kanban-board select {
     border-style: none;
@@ -144,9 +152,6 @@
 .kanban-board input {
     padding-left: 2px;
     padding-right: 2px;
-}
-.kanban-board input[readonly='readonly'] {
-    width: initial;
 }
 .kanban-board a {
     text-decoration: none;

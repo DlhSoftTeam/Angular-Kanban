@@ -26,5 +26,8 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
         $scope.items = items;
         $scope.assignableResources = assignableResources;
         $scope.onAddingNewItem = (item) => { item.assignedResource = resource1; };
-        $scope.onEditingItem = (item) => { alert('Editing ' + item.name); };
+        $scope.onEditingItem = (item) => {
+            if (confirm('Do you want to delete ' + item.name + '?'))
+                items.splice(items.indexOf(item), 1);
+        };
     }]);

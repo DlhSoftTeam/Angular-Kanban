@@ -51,7 +51,15 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 itemHeight: '=?',
                 groupHeight: '=?',
                 itemTemplateUrl: '=?',
+                groupTemplateUrl: '=?',
+                stateTemplateUrl: '=?',
+                newItemButtonTemplateUrl: '=?',
+                editItemButtonTemplateUrl: '=?',
                 stateLabel: '=?',
+                newItemButtonText: '=?',
+                newItemButtonToolTip: '=?',
+                editItemButtonText: '=?',
+                editItemButtonToolTip: '=?',
                 newItemName: '=?',
                 newItemResource: '=?',
                 onAddingNewItem: '&?',
@@ -112,6 +120,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.stateTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-state.html';
                 if (!this.newItemButtonTemplateUrl)
                     this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
+                if (!this.editItemButtonTemplateUrl)
+                    this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
                 this.onItemDrop = function (data, group, state, targetItemIndex) {
                     var itemIndex = parseInt(data);
                     var item = this.items[itemIndex];
@@ -125,6 +135,14 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 };
                 if (!this.stateLabel)
                     this.stateLabel = 'State';
+                if (!this.editItemButtonText)
+                    this.editItemButtonText = '…';
+                if (!this.newItemButtonText)
+                    this.newItemButtonText = '+';
+                if (!this.newItemButtonToolTip)
+                    this.newItemButtonToolTip = 'New item';
+                if (!this.editItemButtonToolTip)
+                    this.editItemButtonToolTip = 'Edit item';
                 if (!this.newItemName)
                     this.newItemName = 'New item';
                 this.addNewItem = function (group, state) {
@@ -153,7 +171,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 element.draggable = true;
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('application/json', scope.dragData);
+                    e.dataTransfer.setData('text', scope.dragData);
                     parentElement.originalOpacity = parentElement.style.opacity;
                     setTimeout(function () {
                         parentElement.style.opacity = 0.35;
@@ -184,7 +202,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     event.preventDefault();
                 }
                 function onDrop(event) {
-                    var data = event.dataTransfer.getData('application/json');
+                    event.preventDefault();
+                    var data = event.dataTransfer.getData('text');
                     scope.onDrop({ data: data });
                 }
             }
