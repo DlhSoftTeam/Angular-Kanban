@@ -55,7 +55,8 @@
     vertical-align: top;
 }
 .kanban-board .group-collapsed .toggle-button {
-    margin-top: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     vertical-align: top;
 }
 .kanban-board .toggle-button-expanded {
