@@ -24,9 +24,9 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="DlhSoft.Kanban.Angular.Components.css" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-state.html" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-state.html" />
     <Content Include="Images\Resource1.png" />
     <Content Include="Images\Resource2.png" />
     <Content Include="index.html" />

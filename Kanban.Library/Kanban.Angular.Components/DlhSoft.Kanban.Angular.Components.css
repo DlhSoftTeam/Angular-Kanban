@@ -13,31 +13,36 @@
 }
 .kanban-board .cell.row-header.toggle-button-area {
     width: 0.01%;
-    margin-right: 0px;
-    padding-right: 0px;
+    margin-right: 0;
+    padding-right: 0;
 }
 .kanban-board .header {
     margin: 4px;
-    padding: 4px;
+    padding: 2px 4px;
+}
+.kanban-board .state-header {
+    padding: 2px 8px;
+    font-size: smaller;
+    vertical-align: bottom;
 }
 .kanban-board .item-container {
     margin: 4px;
 }
 .kanban-board .item {
     background-color: white;
-    margin: 0px;
+    margin: 0;
     border: solid 1px #c0c0c0;
-    padding: 0px;
+    padding: 0;
 }
 .kanban-board .group-container {
     margin: 4px;
-    padding: 0px;
+    padding: 0;
 }
 .kanban-board .group {
     background-color: white;
-    margin: 0px;
+    margin: 0;
     border: solid 1px #c0c0c0;
-    padding: 0px;
+    padding: 0;
     margin-top: 8px;
     margin-left: 2px;
 }
