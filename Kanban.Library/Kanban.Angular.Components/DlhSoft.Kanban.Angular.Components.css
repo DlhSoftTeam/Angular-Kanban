@@ -1,9 +1,6 @@
 ﻿.kanban-board.container {
     width: 100%;
 }
-.kanban-board .content {
-    font-weight: bold;
-}
 .kanban-board .cell {
     vertical-align: top;
     width: 250px;
@@ -18,7 +15,7 @@
 }
 .kanban-board .header {
     margin: 4px;
-    padding: 2px 4px;
+    padding: 0 4px;
 }
 .kanban-board .state-header {
     padding: 2px 8px;

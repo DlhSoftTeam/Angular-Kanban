@@ -11,8 +11,11 @@
 </head>
 <body ng-app="KanbanBoardSample" ng-controller="MainController">
     <h1>Kanban Board Sample</h1>
-    <ds:kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources" on-adding-new-item="onAddingNewItem(item)" on-editing-item="onEditingItem(item)" edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
-        My project
+    <ds:kanban-board 
+        items="items" groups="groups" states="states"
+        assignable-resources="assignableResources"
+        on-adding-new-item="onAddingNewItem(item)" on-editing-item="onEditingItem(item)"
+        edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
     </ds:kanban-board>
 </body>
 </html>
