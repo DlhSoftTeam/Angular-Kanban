@@ -172,7 +172,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     e.dataTransfer.setData('text', scope.dragItemIndex);
                     parentElement.originalOpacity = parentElement.style.opacity;
                     setTimeout(function () {
-                        parentElement.style.opacity = 0.35;
+                        parentElement.style.opacity = (parentElement.originalOpacity ? parentElement.originalOpacity : 1) / 2;
                     });
                 });
                 element.addEventListener('dragend', function (e) {

@@ -25,11 +25,7 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
         $scope.groups = groups;
         $scope.items = items;
         $scope.assignableResources = assignableResources;
-        $scope.onAddingNewItem = (item) => { item.assignedResource = resource1; };
-        $scope.deleteItem = (item) => {
-            items.splice(items.indexOf(item), 1);
-        };
-        $scope.changeItemBackgroundColor = (item) => {
-            item.backgroundColor = 'lightyellow';
-        };
+        $scope.initializeNewItem = (item) => { item.assignedResource = resource1; };
+        $scope.deleteItem = (item) => { items.splice(items.indexOf(item), 1); };
+        $scope.changeItemBackgroundColor = (item) => { item.backgroundColor = 'lightyellow'; };
     });
