@@ -1,7 +1,4 @@
-﻿.kanban-board.container {
-    width: 100%;
-}
-.kanban-board .cell {
+﻿.kanban-board .cell {
     vertical-align: top;
     width: 250px;
 }
@@ -26,7 +23,6 @@
     margin: 4px;
 }
 .kanban-board .item {
-    background-color: white;
     margin: 0;
     border: solid 1px #c0c0c0;
     padding: 0;
@@ -36,7 +32,6 @@
     padding: 0;
 }
 .kanban-board .group {
-    background-color: white;
     margin: 0;
     border: solid 1px #c0c0c0;
     padding: 0;
@@ -62,10 +57,12 @@
 .kanban-board .toggle-button-expanded {
     stroke: #808080;
     fill: #808080;
+    cursor: pointer;
 }
 .kanban-board .toggle-button-collapsed {
     stroke: #808080;
-    fill: #f0f0f0;
+    fill: white;
+    cursor: pointer;
 }
 .kanban-board .cell.item-container {
     background-color: #f0f0f0;
@@ -150,6 +147,7 @@
 }
 .kanban-board input, .kanban-board select {
     border-style: none;
+    background-color: transparent;
     width: 100%;
 }
 .kanban-board input {

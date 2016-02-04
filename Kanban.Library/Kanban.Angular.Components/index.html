@@ -11,11 +11,14 @@
 </head>
 <body ng-app="KanbanBoardSample" ng-controller="MainController">
     <h1>Kanban Board Sample</h1>
-    <ds:kanban-board 
+    <ds:kanban-board
         items="items" groups="groups" states="states"
         assignable-resources="assignableResources"
-        on-adding-new-item="onAddingNewItem(item)" on-editing-item="onEditingItem(item)"
+        on-adding-new-item="onAddingNewItem(item)" on-editing-item="deleteItem(item)"
         edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
     </ds:kanban-board>
+    <div class="drop-panel" ds:kanban-drop-zone on-drop="changeItemBackgroundColor(items[itemIndex])">
+        Drag an item to this external panel to set its background color.
+    </div>
 </body>
 </html>

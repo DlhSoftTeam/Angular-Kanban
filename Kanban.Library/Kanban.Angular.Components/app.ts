@@ -20,14 +20,16 @@ var assignableResources = [resource1, resource2];
 
 declare var angular;
 angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
-    .controller('MainController', ['$scope', function ($scope) {
+    .controller('MainController', function ($scope) {
         $scope.states = states;
         $scope.groups = groups;
         $scope.items = items;
         $scope.assignableResources = assignableResources;
         $scope.onAddingNewItem = (item) => { item.assignedResource = resource1; };
-        $scope.onEditingItem = (item) => {
-            if (confirm('Do you want to delete ' + item.name + '?'))
-                items.splice(items.indexOf(item), 1);
+        $scope.deleteItem = (item) => {
+            items.splice(items.indexOf(item), 1);
         };
-    }]);
+        $scope.changeItemBackgroundColor = (item) => {
+            item.backgroundColor = 'lightyellow';
+        };
+    });

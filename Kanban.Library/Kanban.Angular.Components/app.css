@@ -1,3 +1,11 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
 }
+.drop-panel {
+    display: inline-block;
+    float: right;
+    margin: 24px 0;
+    border: 1px solid #c0c0c0;
+    background-color: lightyellow;
+    padding: 12px;
+}

@@ -7,11 +7,11 @@
             { name: 'Resolved', isNewItemButtonHidden: true },
             { name: 'Closed', isNewItemButtonHidden: true }];
         export var defaultTypes = {
-            task: { color: '#ffd800' },
-            bug: { color: '#ca3838' },
-            story: { color: '#0094ff' },
-            feature: { color: '#67157b' },
-            epic: { color: '#ff6a00' }
+            task: { color: '#ffd800', backgroundColor: 'white' },
+            bug: { color: '#ca3838', backgroundColor: '#fff0f0' },
+            story: { color: '#0094ff', backgroundColor: 'white' },
+            feature: { color: '#67157b', backgroundColor: 'white' },
+            epic: { color: '#ff6a00', backgroundColor: 'white' }
         };
         export var defaultItemType = defaultTypes.task;
         export var defaultGroupType = defaultTypes.story;
@@ -122,8 +122,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
                 if (!this.editItemButtonTemplateUrl)
                     this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
-                this.onItemDrop = function (data, group, state, targetItemIndex) {
-                    var itemIndex = parseInt(data);
+                this.onItemDrop = function (itemIndex, group, state, targetItemIndex) {
                     var item = this.items[itemIndex];
                     item.group = group;
                     item.state = state;
@@ -131,7 +130,6 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                         this.items.splice(itemIndex, 1);
                         this.items.splice(targetItemIndex, 0, item);
                     }
-                    $scope.$apply();
                 };
                 if (!this.stateLabel)
                     this.stateLabel = 'State';
@@ -160,7 +158,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
         return {
             restrict: 'A',
             scope: {
-                dragData: '@',
+                dragItemIndex: '@',
                 highlightParent: '@?'
             },
             link: function (scope, element) {
@@ -171,7 +169,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 element.draggable = true;
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text', scope.dragData);
+                    e.dataTransfer.setData('text', scope.dragItemIndex);
                     parentElement.originalOpacity = parentElement.style.opacity;
                     setTimeout(function () {
                         parentElement.style.opacity = 0.35;
@@ -203,8 +201,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 }
                 function onDrop(event) {
                     event.preventDefault();
-                    var data = event.dataTransfer.getData('text');
-                    scope.onDrop({ data: data });
+                    var itemIndex = parseInt(event.dataTransfer.getData('text'));
+                    scope.onDrop({ itemIndex: itemIndex });
+                    scope.$apply();
                 }
             }
         };

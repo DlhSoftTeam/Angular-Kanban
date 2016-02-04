@@ -1,30 +1,32 @@
-﻿<div class="group">
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <td class="group-gripper" ng-style="{ backgroundColor: (group.color ? group.color : (group.type ? group.type.color : dskb.defaultGroupType.color)) }">&nbsp;</td>
-            <td class="group-content">
-                <div class="item-property"><input type="text" ng-model="group.name"/></div>
-                <table cellpadding="0" cellspacing="0" ng-if="dskb.assignableResources" ng-hide="group.isCollapsed" class="item-property item-property-editor item-property-table">
-                    <tr>
-                        <td>
-                            <img ng-if="group.assignedResource.imageUrl" ng-src="{{ group.assignedResource.imageUrl }}" class="item-property-image"/>
-                        </td>
-                        <td class="item-property-table">
-                            <select ng-model="group.assignedResource" ng-options="resource as resource.name for resource in dskb.assignableResources" class="item-property-secondary"></select>
-                        </td>
-                    </tr>
-                </table>
-                <table cellpadding="0" cellspacing="0" ng-hide="group.isCollapsed" class="item-property item-property-editor item-property-table">
-                    <tr>
-                        <td>
-                            <span class="item-property-label">{{ dskb.stateLabel }}:</span>
-                        </td>
-                        <td class="item-property-table">
-                            <select ng-model="group.state" ng-options="groupState as groupState.name for groupState in dskb.groupStates"></select>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+﻿<div class="group-area">
+    <div class="group" ng-style="{ backgroundColor: group.backgroundColor ? group.backgroundColor : (group.type && group.type.backgroundColor ? group.type.backgroundColor : dskb.defaultGroupType.backgroundColor) }">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="group-gripper" ng-style="{ backgroundColor: group.color ? group.color : (group.type ? group.type.color : dskb.defaultGroupType.color) }">&nbsp;</td>
+                <td class="group-content">
+                    <div class="item-property"><input type="text" ng-model="group.name"/></div>
+                    <table cellpadding="0" cellspacing="0" ng-if="dskb.assignableResources" ng-hide="group.isCollapsed" class="item-property item-property-editor item-property-table">
+                        <tr>
+                            <td>
+                                <img ng-if="group.assignedResource.imageUrl" ng-src="{{ group.assignedResource.imageUrl }}" class="item-property-image"/>
+                            </td>
+                            <td class="item-property-table">
+                                <select ng-model="group.assignedResource" ng-options="resource as resource.name for resource in dskb.assignableResources" class="item-property-secondary"></select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" ng-hide="group.isCollapsed" class="item-property item-property-editor item-property-table">
+                        <tr>
+                            <td>
+                                <span class="item-property-label">{{ dskb.stateLabel }}:</span>
+                            </td>
+                            <td class="item-property-table">
+                                <select ng-model="group.state" ng-options="groupState as groupState.name for groupState in dskb.groupStates"></select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
