@@ -17,6 +17,7 @@ var items = [
     { name: 'Task 8', group: group2, state: state3, assignedResource: resource2 }
 ];
 var assignableResources = [resource1, resource2];
+var nextIterationItems = [];
 
 declare var angular;
 angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
@@ -25,7 +26,16 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
         $scope.groups = groups;
         $scope.items = items;
         $scope.assignableResources = assignableResources;
-        $scope.initializeNewItem = (item) => { item.assignedResource = resource1; };
-        $scope.deleteItem = (item) => { items.splice(items.indexOf(item), 1); };
-        $scope.changeItemBackgroundColor = (item) => { item.backgroundColor = 'lightyellow'; };
+        $scope.initializeNewItem = (item) => {
+            item.assignedResource = resource1;
+        };
+        $scope.deleteItem = (item) => {
+            items.splice(items.indexOf(item), 1);
+        };
+        $scope.nextIterationItems = nextIterationItems;
+        $scope.moveItemToNextIteration = (itemIndex) => {
+            var item = items[itemIndex];
+            items.splice(itemIndex, 1);
+            nextIterationItems.push(item);
+        };
     });
