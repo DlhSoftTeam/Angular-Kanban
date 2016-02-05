@@ -19,7 +19,7 @@
                 </svg>
             </td>
             <td ng-if="!dskb.hideGroups" class="cell header row-header group-container">
-                <div ng-style="{ height: (!group.isCollapsed ? dskb.groupHeight : dskb.collapsedGroupHeight) + 'px' }" class="content-box">
+                <div ng-style="{ height: (!group.isCollapsed ? dskb.groupHeight : dskb.collapsedGroupHeight) + 'px' }" class="content-box" ds:kanban-item-drop-zone on-drop="dskb.onGroupDrop(itemType, index, dskb.groups.indexOf(group))">
                     <ng-include src="group.templateUrl ? group.templateUrl : (group.type && group.type.templateUrl ? group.type.templateUrl : dskb.groupTemplateUrl)"/>
                 </div>
             </td>

@@ -136,6 +136,13 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                         this.items.splice(targetIndex, 0, item);
                     }
                 };
+                this.onGroupDrop = function (itemType, index, targetIndex) {
+                    if (itemType !== 'group')
+                        return;
+                    var group = this.groups[index];
+                    this.groups.splice(index, 1);
+                    this.groups.splice(targetIndex, 0, group);
+                };
                 if (!this.stateLabel)
                     this.stateLabel = 'State';
                 if (!this.editItemButtonText)
