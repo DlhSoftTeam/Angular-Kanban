@@ -22,6 +22,9 @@
 .kanban-board .item-container {
     margin: 4px;
 }
+.kanban-board .item-area {
+    margin: 2px;
+}
 .kanban-board .item {
     margin: 0;
     border: solid 1px #c0c0c0;
@@ -30,6 +33,9 @@
 .kanban-board .group-container {
     margin: 4px;
     padding: 0;
+}
+.kanban-board .group-area {
+    margin: 2px;
 }
 .kanban-board .group {
     margin: 0;
@@ -151,8 +157,11 @@
     width: 100%;
 }
 .kanban-board input {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.kanban-board input.select-replacement {
+    margin-left: 2px;
 }
 .kanban-board a {
     text-decoration: none;

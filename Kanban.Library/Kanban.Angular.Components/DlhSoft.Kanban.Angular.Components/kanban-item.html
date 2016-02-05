@@ -11,7 +11,7 @@
                                 <img ng-if="dskb.assignableResources && item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
                             </td>
                             <td class="item-property-table">
-                                <input ng-model="dskb.assignableResources ? item.assignedResource.name : null" ng-model-options="{ getterSetter: true }" readonly="readonly" class="item-property-secondary"/>
+                                <input ng-model="dskb.assignableResources ? item.assignedResource.name : null" ng-model-options="{ getterSetter: true }" readonly="readonly" class="item-property-secondary select-replacement"/>
                             </td>
                         </tr>
                     </table>
