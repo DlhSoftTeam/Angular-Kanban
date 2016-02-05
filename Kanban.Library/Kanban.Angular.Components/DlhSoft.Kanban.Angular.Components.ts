@@ -107,9 +107,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 if (!this.stateWidth)
                     this.stateWidth = '100%';
                 if (!this.itemHeight)
-                    this.itemHeight = 52;
+                    this.itemHeight = 56;
                 if (!this.groupHeight)
-                    this.groupHeight = 82;
+                    this.groupHeight = 86;
                 if (!this.collapsedGroupHeight)
                     this.collapsedGroupHeight = 38;
                 if (!this.itemTemplateUrl)

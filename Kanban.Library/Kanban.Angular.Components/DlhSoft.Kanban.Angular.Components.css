@@ -34,14 +34,11 @@
     margin: 4px;
     padding: 0;
 }
-.kanban-board .group-area {
-    margin: 2px;
-}
 .kanban-board .group {
     margin: 0;
     border: solid 1px #c0c0c0;
     padding: 0;
-    margin-top: 8px;
+    margin-top: 10px;
     margin-left: 2px;
 }
 .kanban-board .group-collapsed {
@@ -114,8 +111,9 @@
 }
 .kanban-board .item-edit-button-area {
     float: right;
-    margin-top: -3px;
-    margin-right: -4px;
+    margin-left: 1px;
+    margin-right: -1px;
+    font-size: smaller;
 }
 .kanban-board .item-property {
     height: 20px;
@@ -141,6 +139,9 @@
 }
 .kanban-board .item-property-table {
     width: 100%;
+}
+.kanban-board .button-container {
+    margin: 2px;
 }
 .kanban-board .button {
     font-size: smaller;
