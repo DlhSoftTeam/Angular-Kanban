@@ -1,17 +1,19 @@
-﻿<div ng-mouseenter="isHovered = true" ng-mouseleave="isHovered = false" class="item-area">
-    <div class="item" ds:kanban-draggable-item drag-index="{{ dskb.items.indexOf(item) }}" is-dragging-parent="true" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
+﻿<div ng-mouseenter="isHovered = true" ng-mouseleave="isHovered = false" class="kanban-board-item-container">
+    <div class="kanban-board-item" ds:kanban-draggable-item drag-index="{{ dskb.items.indexOf(item) }}" is-dragging-parent="true" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
         <table>
             <tr>
-                <td class="item-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }">&nbsp;</td>
-                <td class="item-content">
-                    <div class="item-property item-property-editor"><input type="text" ng-model="item.name" readonly="readonly"/></div>
-                    <table class="item-property item-property-editor item-property-table">
+                <td class="kanban-board-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }">&nbsp;</td>
+                <td class="kanban-board-item-content">
+                    <div class="kanban-board-property kanban-board-property-editor">
+                        <input type="text" ng-model="item.name" readonly="readonly"/>
+                    </div>
+                    <table class="kanban-board-property kanban-board-property-editor kanban-board-property-table">
                         <tr>
                             <td>
-                                <img ng-if="dskb.assignableResources && item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
+                                <img ng-if="dskb.assignableResources && item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="kanban-board-property-image"/>
                             </td>
-                            <td class="item-property-table">
-                                <input ng-model="dskb.assignableResources ? item.assignedResource.name : null" ng-model-options="{ getterSetter: true }" readonly="readonly" class="item-property-secondary select-replacement"/>
+                            <td class="kanban-board-property-table">
+                                <input ng-model="dskb.assignableResources ? item.assignedResource.name : null" ng-model-options="{ getterSetter: true }" readonly="readonly" class="kanban-board-property-secondary kanban-board-select-replacement"/>
                             </td>
                         </tr>
                     </table>
@@ -19,20 +21,22 @@
             </tr>
         </table>
     </div>
-    <div class="item-editors-area" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
-        <div class="item-edit-button-area" ng-show="isHovered">
-            <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})" class="button edit-item-button" title="{{ dskb.editItemButtonToolTip }}">
+    <div class="kanban-board-editors-area" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
+        <div class="kanban-board-item-commands-container" ng-show="dskb.onEditingItem && isHovered">
+            <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})" class="kanban-board-button kanban-board-edit-button" title="{{ dskb.editItemButtonToolTip }}">
                 {{ dskb.editItemButtonText }}
             </a>
         </div>
-        <div class="item-property item-property-editor"><input type="text" ng-model="item.name"/></div>
-        <table ng-if="dskb.assignableResources" class="item-property item-property-editor item-property-table">
+        <div class="kanban-board-property kanban-board-property-editor">
+            <input type="text" ng-model="item.name"/>
+        </div>
+        <table ng-if="dskb.assignableResources" class="kanban-board-property kanban-board-property-editor kanban-board-property-table">
             <tr>
                 <td>
-                    <img ng-if="item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
+                    <img ng-if="item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="kanban-board-property-image"/>
                 </td>
-                <td class="item-property-table">
-                    <select ng-model="item.assignedResource" ng-options="resource as resource.name for resource in dskb.assignableResources" class="item-property-secondary"></select>
+                <td class="kanban-board-property-table">
+                    <select ng-model="item.assignedResource" ng-options="resource as resource.name for resource in dskb.assignableResources" class="kanban-board-property-secondary"></select>
                 </td>
             </tr>
         </table>

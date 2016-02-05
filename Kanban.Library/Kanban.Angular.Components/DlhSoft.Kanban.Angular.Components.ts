@@ -114,7 +114,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 if (!this.groupHeight)
                     this.groupHeight = 86;
                 if (!this.collapsedGroupHeight)
-                    this.collapsedGroupHeight = 38;
+                    this.collapsedGroupHeight = 36;
                 if (!this.itemTemplateUrl)
                     this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
                 if (!this.groupTemplateUrl)
