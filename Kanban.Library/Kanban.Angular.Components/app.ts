@@ -39,7 +39,7 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
             items.splice(items.indexOf(item), 1);
         };
 
-        // Simulate moving items to a next iteration.
+        // Move items to the next iteration.
         $scope.nextIteration = nextIteration;
         $scope.moveItemToNextIteration = (itemType, index) => {
             if (itemType === 'group') {

@@ -3,24 +3,33 @@
 <head>
     <meta charset="utf-8"/>
     <title>Kanban Board Sample</title>
-    <link rel="stylesheet" href="app.css" type="text/css"/>
-    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css"/>
+    <!-- Angular framwork. -->
     <script src="Scripts/angular.min.js"></script>
+    <!-- DlhSoft component and style references. TypeScript: DlhSoft.Kanban.Angular.Components.ts. -->
     <script src="DlhSoft.Kanban.Angular.Components.js"></script>
+    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css"/>
+    <!-- Sample application code and style references. TypeScript: app.ts. -->
     <script src="app.js"></script>
+    <link rel="stylesheet" href="app.css" type="text/css"/>
 </head>
+<!-- Sample application user interface. -->
 <body ng-app="KanbanBoardSample" ng-controller="MainController">
     <h1>Kanban Board Sample</h1>
+    <!-- Kanban board component. -->
     <ds:kanban-board items="items" groups="groups" states="states"
                      assignable-resources="assignableResources"
                      on-adding-new-item="initializeNewItem(item)" on-editing-item="deleteItem(item)"
                      edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
     </ds:kanban-board>
-    <ds:kanban-item-drop-zone class="iteration-panel" title="Drag an item to this panel to simulate moving it to the next iteration."
-                              on-drop="moveItemToNextIteration(itemType, index)">
-        Next iteration:
-        <div>{{ nextIteration.groups.length }} story(-ies)</div>
-        <div>{{ nextIteration.items.length }} item(s)</div>
+    <!-- External drop zone panel: supports handling dropping Kanban items. -->
+    <ds:kanban-item-drop-zone on-drop="moveItemToNextIteration(itemType, index)"
+                              class="next-iteration-panel" 
+                              title="Drag items to this external panel to move them to the next iteration.">
+        <div class="header">Next iteration - future work</div>
+        <div class="content">
+            <div class="value">{{ nextIteration.groups.length }} story(-ies)</div>
+            <div class="value">{{ nextIteration.items.length }} item(s)</div>
+        </div>
     </ds:kanban-item-drop-zone>
 </body>
 </html>

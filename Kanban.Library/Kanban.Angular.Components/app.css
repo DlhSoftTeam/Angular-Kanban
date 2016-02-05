@@ -1,10 +1,22 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
 }
-.iteration-panel {
+.next-iteration-panel {
     display: inline-block;
-    float: right;
-    margin: 24px 0;
+    margin: 24px 14px;
     border: 1px solid #c0c0c0;
+    background: lightyellow;
     padding: 12px;
+}
+.next-iteration-panel .header {
+    margin-bottom: 2px;
+    text-align: center;
+}
+.next-iteration-panel .content {
+    font-size: smaller;
+    text-align: center;
+}
+.next-iteration-panel .content .value {
+    display: inline-block;
+    margin: 0 12px;
 }

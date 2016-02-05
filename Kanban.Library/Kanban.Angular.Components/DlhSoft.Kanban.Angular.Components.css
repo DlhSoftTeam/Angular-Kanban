@@ -1,4 +1,8 @@
-﻿.kanban-board .cell {
+﻿.kanban-board table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.kanban-board .cell {
     vertical-align: top;
     width: 250px;
 }

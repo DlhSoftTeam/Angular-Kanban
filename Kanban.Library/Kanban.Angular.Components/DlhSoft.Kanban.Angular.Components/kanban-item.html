@@ -1,11 +1,11 @@
 ﻿<div ng-mouseenter="isHovered = true" ng-mouseleave="isHovered = false" class="item-area">
     <div class="item" ds:kanban-draggable-item drag-index="{{ dskb.items.indexOf(item) }}" is-dragging-parent="true" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
-        <table cellpadding="0" cellspacing="0">
+        <table>
             <tr>
                 <td class="item-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }">&nbsp;</td>
                 <td class="item-content">
                     <div class="item-property item-property-editor"><input type="text" ng-model="item.name" readonly="readonly"/></div>
-                    <table cellpadding="0" cellspacing="0" class="item-property item-property-editor item-property-table">
+                    <table class="item-property item-property-editor item-property-table">
                         <tr>
                             <td>
                                 <img ng-if="dskb.assignableResources && item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="item-property item-property-editor"><input type="text" ng-model="item.name"/></div>
-        <table cellpadding="0" cellspacing="0" ng-if="dskb.assignableResources" class="item-property item-property-editor item-property-table">
+        <table ng-if="dskb.assignableResources" class="item-property item-property-editor item-property-table">
             <tr>
                 <td>
                     <img ng-if="item.assignedResource.imageUrl" ng-src="{{ item.assignedResource.imageUrl }}" class="item-property-image"/>
