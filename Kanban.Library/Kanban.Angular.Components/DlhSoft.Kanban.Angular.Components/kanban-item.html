@@ -19,7 +19,7 @@
             </tr>
         </table>
     </div>
-    <div class="item-editors-area">
+    <div class="item-editors-area" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
         <div class="item-edit-button-area" ng-show="isItemHovered">
             <a ng-hide="item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})" class="button edit-item-button" title="{{ dskb.editItemButtonToolTip }}">
                 {{ dskb.editItemButtonText }}
