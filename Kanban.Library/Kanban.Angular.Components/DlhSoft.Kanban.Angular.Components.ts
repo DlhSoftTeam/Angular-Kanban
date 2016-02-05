@@ -122,7 +122,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
                 if (!this.editItemButtonTemplateUrl)
                     this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
-                this.onItemDrop = function (itemIndex, group, state, targetItemIndex) {
+                this.onItemDrop = function (itemType, itemIndex, group, state, targetItemIndex) {
+                    if (itemType !== 'item')
+                        return;
                     var item = this.items[itemIndex];
                     item.group = group;
                     item.state = state;
@@ -158,6 +160,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
         return {
             restrict: 'A',
             scope: {
+                dragItemType: '@?',
                 dragItemIndex: '@',
                 highlightParent: '@?'
             },
@@ -169,7 +172,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 element.draggable = true;
                 element.addEventListener('dragstart', function (e) {
                     e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text', scope.dragItemIndex);
+                    e.dataTransfer.setData('text', (scope.dragItemType ? scope.dragItemType + ':' : '') + scope.dragItemIndex);
                     parentElement.originalOpacity = parentElement.style.opacity;
                     setTimeout(function () {
                         parentElement.style.opacity = (parentElement.originalOpacity ? parentElement.originalOpacity : 1) / 2;
@@ -201,8 +204,11 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 }
                 function onDrop(event) {
                     event.preventDefault();
-                    var itemIndex = parseInt(event.dataTransfer.getData('text'));
-                    scope.onDrop({ itemIndex: itemIndex });
+                    var itemInfo = event.dataTransfer.getData('text');
+                    var infoSeparatorIndex = itemInfo.indexOf(':');
+                    var itemType = infoSeparatorIndex >= 0 ? itemInfo.substr(0, infoSeparatorIndex) : 'item';
+                    var itemIndex = parseInt(infoSeparatorIndex >= 0 ? itemInfo.substr(infoSeparatorIndex + 1) : itemInfo);
+                    scope.onDrop({ itemType: itemType, itemIndex: itemIndex });
                     scope.$apply();
                 }
             }

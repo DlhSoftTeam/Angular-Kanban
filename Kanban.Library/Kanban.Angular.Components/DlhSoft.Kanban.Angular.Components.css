@@ -130,6 +130,7 @@
     float: left;
     margin-bottom: 1px;
     margin-left: 2px;
+    margin-right: 2px;
     color: gray;
 }
 .kanban-board .item-property-image {

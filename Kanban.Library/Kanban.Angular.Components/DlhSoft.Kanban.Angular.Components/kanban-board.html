@@ -25,12 +25,12 @@
             </td>
             <td ng-repeat="state in dskb.states" class="cell item-container">
                 <div ng-hide="group.isCollapsed" ng-style="{ height: ((!group.isCollapsed ? dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length : 1) * dskb.itemHeight + (!dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 26 : 0)) + 'px' }">
-                    <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone on-drop="dskb.onItemDrop(itemIndex, group, state, dskb.items.indexOf(item))">
+                    <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-drop-zone on-drop="dskb.onItemDrop(itemType, itemIndex, group, state, dskb.items.indexOf(item))">
                         <div ng-style="{ height: dskb.itemHeight + 'px' }" class="content-box">
                             <ng-include src="item.templateUrl ? item.templateUrl : (item.type && item.type.templateUrl ? item.type.templateUrl : dskb.itemTemplateUrl)"/>
                         </div>
                     </div>
-                    <div ng-style="{ height: ((dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * dskb.itemHeight + (!dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 26 : 0)) + 'px' }" ds:kanban-drop-zone on-drop="dskb.onItemDrop(itemIndex, group, state)" class="button-container">
+                    <div ng-style="{ height: ((dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * dskb.itemHeight + (!dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 26 : 0)) + 'px' }" ds:kanban-drop-zone on-drop="dskb.onItemDrop(itemType, itemIndex, group, state)" class="button-container">
                         <a ng-hide="state.isNewItemButtonHidden" href="javascript://" class="button new-item-button" ng-click="dskb.addNewItem(group, state)" title="{{ dskb.newItemButtonToolTip }}">
                             {{ dskb.newItemButtonText }}
                         </a>
