@@ -16,9 +16,11 @@
                      on-adding-new-item="initializeNewItem(item)" on-editing-item="deleteItem(item)"
                      edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
     </ds:kanban-board>
-    <div ds:kanban-drop-zone on-drop="moveItemToNextIteration(itemType, itemIndex)" 
-         class="iteration-panel" title="Drag an item to this panel to simulate moving it to the next iteration.">
-        Next iteration: {{ nextIterationItems.length }} item(s)
-    </div>
+    <ds:kanban-item-drop-zone class="iteration-panel" title="Drag an item to this panel to simulate moving it to the next iteration."
+                              on-drop="moveItemToNextIteration(itemType, index)">
+        Next iteration:
+        <div>{{ nextIteration.groups.length }} story(-ies)</div>
+        <div>{{ nextIteration.items.length }} item(s)</div>
+    </ds:kanban-item-drop-zone>
 </body>
 </html>

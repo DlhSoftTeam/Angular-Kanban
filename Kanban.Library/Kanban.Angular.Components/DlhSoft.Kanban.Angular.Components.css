@@ -102,12 +102,19 @@
 }
 .kanban-board .group-gripper {
     width: 12px;
+    cursor: move;
 }
 .kanban-board .item-editors-area {
     position: relative; 
     top: -45px;
     left: 8px;
     margin-right: 14px;
+}
+.kanban-board .group-editors-area {
+    position: relative; 
+    top: -64px;
+    left: 11px;
+    margin-right: 16px;
 }
 .kanban-board .item-edit-button-area {
     float: right;

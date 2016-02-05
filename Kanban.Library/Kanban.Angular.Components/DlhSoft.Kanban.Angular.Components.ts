@@ -19,7 +19,7 @@
             var itemsInGroupAndState = [];
             for (var i = 0; i < this.items.length; i++) {
                 var item = this.items[i];
-                if (item.group == group && item.state == state) {
+                if (item.group === group && item.state === state) {
                     itemsInGroupAndState.push(item);
                 }
             }
@@ -60,12 +60,15 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 newItemButtonToolTip: '=?',
                 editItemButtonText: '=?',
                 editItemButtonToolTip: '=?',
+                editGroupButtonText: '=?',
+                editGroupButtonToolTip: '=?',
                 newItemName: '=?',
                 newItemResource: '=?',
                 onAddingNewItem: '&?',
-                onEditingItem: '&?'
+                onEditingItem: '&?',
+                onEditingGroup: '&?'
             },
-            controller: function ($scope) {
+            controller: function($scope) {
                 if (!this.groups) {
                     for (var i = 0; i < this.items.length; i++)
                         this.items[i].group = DlhSoft.Controls.KanbanBoard.defaultGroup;
@@ -91,7 +94,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.defaultGroupType = DlhSoft.Controls.KanbanBoard.defaultGroupType;
                 this.getItemsInGroupAndState = DlhSoft.Controls.KanbanBoard.getItemsInGroupAndState;
                 this.getMaxStateInGroup = function (group) {
-                    var maxState, maxItemCount = 0;
+                    var maxState = null, maxItemCount = 0;
                     for (var i = 0; i < this.states.length; i++) {
                         var state = this.states[i];
                         var itemCount = this.getItemsInGroupAndState(group, state).length;
@@ -122,27 +125,31 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
                 if (!this.editItemButtonTemplateUrl)
                     this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
-                this.onItemDrop = function (itemType, itemIndex, group, state, targetItemIndex) {
+                this.onItemDrop = function (itemType, index, group, state, targetIndex) {
                     if (itemType !== 'item')
                         return;
-                    var item = this.items[itemIndex];
+                    var item = this.items[index];
                     item.group = group;
                     item.state = state;
-                    if (typeof targetItemIndex !== 'undefined') {
-                        this.items.splice(itemIndex, 1);
-                        this.items.splice(targetItemIndex, 0, item);
+                    if (typeof targetIndex !== 'undefined') {
+                        this.items.splice(index, 1);
+                        this.items.splice(targetIndex, 0, item);
                     }
                 };
                 if (!this.stateLabel)
                     this.stateLabel = 'State';
                 if (!this.editItemButtonText)
                     this.editItemButtonText = '…';
+                if (!this.editGroupButtonText)
+                    this.editGroupButtonText = this.editItemButtonText;
                 if (!this.newItemButtonText)
                     this.newItemButtonText = '+';
                 if (!this.newItemButtonToolTip)
                     this.newItemButtonToolTip = 'New item';
                 if (!this.editItemButtonToolTip)
                     this.editItemButtonToolTip = 'Edit item';
+                if (!this.editGroupButtonToolTip)
+                    this.editGroupButtonToolTip = this.editItemButtonToolTip;
                 if (!this.newItemName)
                     this.newItemName = 'New item';
                 this.addNewItem = function (group, state) {
@@ -156,61 +163,64 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
             templateUrl: 'DlhSoft.Kanban.Angular.Components/kanban-board.html'
         }
     })
-    .directive('dsKanbanDraggableItem', function () {
+    .directive('dsKanbanDraggableItem', function($timeout) {
         return {
             restrict: 'A',
             scope: {
                 dragItemType: '@?',
-                dragItemIndex: '@',
-                highlightParent: '@?'
+                dragIndex: '@',
+                isDraggingParent: '@?'
             },
-            link: function (scope, element) {
-                var parentElement = scope.highlightParent ? element.parent()[0] : null;
+            link: function(scope, element) {
+                var parentElement = scope.isDraggingParent ? element.parent()[0] : null;
                 element = element[0];
                 if (!parentElement)
                     parentElement = element;
                 element.draggable = true;
-                element.addEventListener('dragstart', function (e) {
-                    e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text', (scope.dragItemType ? scope.dragItemType + ':' : '') + scope.dragItemIndex);
+                function onDragStart(event) {
+                    event.dataTransfer.effectAllowed = 'move';
+                    event.dataTransfer.setData('text', (scope.dragItemType ? scope.dragItemType + ':' : '') + scope.dragIndex);
                     parentElement.originalOpacity = parentElement.style.opacity;
-                    setTimeout(function () {
-                        parentElement.style.opacity = (parentElement.originalOpacity ? parentElement.originalOpacity : 1) / 2;
-                    });
-                });
-                element.addEventListener('dragend', function (e) {
+                    $timeout(() => { parentElement.style.opacity = (parentElement.originalOpacity ? parentElement.originalOpacity : 1) / 2; });
+                }
+                function onDragEnd() {
                     parentElement.style.opacity = parentElement.originalOpacity;
                     delete parentElement.originalOpacity;
+                }
+                element.addEventListener('dragstart', onDragStart);
+                element.addEventListener('dragend', onDragEnd);
+                scope.$on('$destroy', () => {
+                    element.removeEventListener('dragstart', onDragStart);
+                    element.removeEventListener('dragend', onDragEnd);
                 });
             }
         };
     })
-    .directive('dsKanbanDropZone', function () {
+    .directive('dsKanbanItemDropZone', function() {
         return {
-            restrict: 'A',
+            restrict: 'EA',
             scope: {
                 onDrop: '&'
             },
-            link: function (scope, element) {
+            link: function(scope, element) {
                 element = element[0];
-                element.addEventListener('dragover', onDragOver);
-                element.addEventListener('drop', onDrop);
-                scope.$on('$destroy', function () {
-                    element.removeEventListener('drop', onDrop);
-                    element.removeEventListener('dragover', onDragOver);
-                });
                 function onDragOver(event) {
                     event.preventDefault();
                 }
                 function onDrop(event) {
-                    event.preventDefault();
                     var itemInfo = event.dataTransfer.getData('text');
                     var infoSeparatorIndex = itemInfo.indexOf(':');
                     var itemType = infoSeparatorIndex >= 0 ? itemInfo.substr(0, infoSeparatorIndex) : 'item';
-                    var itemIndex = parseInt(infoSeparatorIndex >= 0 ? itemInfo.substr(infoSeparatorIndex + 1) : itemInfo);
-                    scope.onDrop({ itemType: itemType, itemIndex: itemIndex });
+                    var index = parseInt(infoSeparatorIndex >= 0 ? itemInfo.substr(infoSeparatorIndex + 1) : itemInfo);
+                    scope.onDrop({ itemType: itemType, index: index });
                     scope.$apply();
                 }
+                element.addEventListener('dragover', onDragOver);
+                element.addEventListener('drop', onDrop);
+                scope.$on('$destroy', () => {
+                    element.removeEventListener('drop', onDrop);
+                    element.removeEventListener('dragover', onDragOver);
+                });
             }
         };
     });
