@@ -1,189 +1,188 @@
-﻿.kanban-board-cell {
+﻿.dskb-cell {
     vertical-align: top;
-    width: 250px;
 }
-.kanban-board-cell.kanban-board-row-header {
-    width: 150px;
-}
-.kanban-board-cell.kanban-board-row-header.kanban-board-toggle-button-area {
-    width: 0.01%;
+.dskb-cell.dskb-row-header.dskb-toggle-button-area {
+    width: 1px;
     margin-right: 0;
     padding-right: 0;
 }
-.kanban-board-header {
+.dskb-header {
     margin: 4px;
     padding: 0 4px;
 }
-.kanban-board-state-header {
+.dskb-state-header {
     padding: 2px 8px;
     font-size: smaller;
     vertical-align: bottom;
 }
-.kanban-board-group-container {
+.dskb-group-container {
     margin: 4px;
     padding: 0;
 }
-.kanban-board-group {
+.dskb-group {
     margin: 0;
     border: solid 1px #c0c0c0;
     padding: 0;
     margin-top: 8px;
     margin-left: 2px;
 }
-.kanban-board-items-container {
+.dskb-items-container {
     margin: 4px;
 }
-.kanban-board-item-container {
+.dskb-item-container {
     margin: 2px;
 }
-.kanban-board-item {
+.dskb-item {
     margin: 0;
     border: solid 1px #c0c0c0;
     padding: 0;
 }
-.kanban-board-content-box {
+.dskb-content-box {
     overflow: hidden;
 }
-.kanban-board-group-collapsed {
+.dskb-group-collapsed {
     background-color: #f0f0f0;
 }
-.kanban-board-group-collapsed .kanban-board-group {
+.dskb-group-collapsed .dskb-group {
     margin-right: 6px;
 }
-.kanban-board-group-collapsed .kanban-board-toggle-button-area {
+.dskb-group-collapsed .dskb-toggle-button-area {
     border-top: 4px solid white;
 }
-.kanban-board-toggle-button {
+.dskb-toggle-button {
     margin-top: 10px;
     margin-bottom: 10px;
     vertical-align: top;
 }
-.kanban-board-group-collapsed .kanban-board-toggle-button {
+.dskb-group-collapsed .dskb-toggle-button {
     margin-top: 16px;
     margin-bottom: 16px;
     vertical-align: top;
 }
-.kanban-board-cell.kanban-board-items-container {
+.dskb-cell.dskb-items-container {
     background-color: #f0f0f0;
     padding: 4px;
     border-left: 4px solid white;
     border-top: 4px solid white;
 }
-.kanban-board-group-collapsed .kanban-board-cell.kanban-board-group-container {
+.dskb-group-collapsed .dskb-cell.dskb-group-container {
     border-top: 4px solid white;
 }
-.kanban-board-group-collapsed .kanban-board-group {
+.dskb-group-collapsed .dskb-group {
     margin-top: 6.5px;
 }
-.kanban-board-toggle-button-expanded {
+.dskb-toggle-button-expanded {
     stroke: #808080;
     fill: #808080;
     cursor: pointer;
 }
-.kanban-board-toggle-button-collapsed {
+.dskb-toggle-button-collapsed {
     stroke: #808080;
     fill: white;
     cursor: pointer;
 }
-.kanban-board-gripper {
+.dskb-gripper {
     width: 12px;
     cursor: move;
 }
-.kanban-board-item-content {
+.dskb-item-content {
     width: 100%;
     padding: 3px 2px;
 }
-.kanban-board-group-content {
+.dskb-group-content {
     width: 100%;
     padding: 3px 2px;
 }
-.kanban-board-editors-area {
+.dskb-editors-area {
     position: relative; 
     top: -45.5px;
     left: 10px;
     margin-right: 15px;
 }
-.kanban-board-group-editors-area {
+.dskb-group-editors-area {
     top: -66px;
     left: 12px;
     margin-right: 17px;
 }
-.kanban-board-group-collapsed .kanban-board-group-editors-area {
+.dskb-group-collapsed .dskb-group-editors-area {
     top: -24px;
     margin-right: 23px;
 }
-.kanban-board-item-commands-container {
+.dskb-item-commands-container {
     float: right;
     margin-left: 1px;
     margin-right: -2px;
     margin-top: -1px;
     font-size: smaller;
 }
-.kanban-board-group-container .kanban-board-item-commands-container {
+.dskb-group-container .dskb-item-commands-container {
     margin-top: -0.5px;
 }
-.kanban-board-property {
+.dskb-property {
     height: 20px;
     font-size: smaller;
     overflow: hidden;
 }
-.kanban-board-property-secondary {
+.dskb-property-secondary {
     color: gray;
 }
-.kanban-board-property-editor {
+.dskb-property-editor {
     margin-left: 1px;
 }
-.kanban-board-property-label {
+.dskb-property-label {
     float: left;
     margin-bottom: 1px;
     margin-left: 2px;
     margin-right: 2px;
     color: gray;
 }
-.kanban-board-property-image {
+.dskb-property-image {
     float: left;
     margin: 1px;
     height: 18px;
 }
-.kanban-board-property-table {
+.dskb-property-table {
     width: 100%;
 }
-.kanban-board-commands-container {
+.dskb-commands-container {
     margin: 2px;
 }
-.kanban-board-button {
+.dskb-button {
     font-size: smaller;
     border: 1px solid #c0c0c0;
     background-color: #f8f8f8;
     padding: 2px 6.5px;
     margin-right: 1.5px;
 }
-.kanban-board-button:hover {
+.dskb-button:hover {
     border-color: #84cbff;
 }
-.kanban-board input, .kanban-board select {
+.dskb-no-items-label {
+    padding: 6px;
+}
+.dskb input, .dskb select {
     border-style: none;
     background-color: transparent;
     width: 100%;
 }
-.kanban-board input {
+.dskb input {
     padding-left: 2px;
     padding-right: 2px;
 }
-.kanban-board input.kanban-board-select-replacement {
+.dskb input.dskb-select-replacement {
     margin-left: 1px;
 }
-.kanban-board table {
+.dskb table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-.kanban-board a {
+.dskb a {
     text-decoration: none;
     color: initial;
 }
-.kanban-board a:visited {
+.dskb a:visited {
     color: initial;
 }
-.kanban-board * {
+.dskb * {
     box-sizing: border-box;
 }

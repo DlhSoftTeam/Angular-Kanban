@@ -55,7 +55,14 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 stateTemplateUrl: '=?',
                 newItemButtonTemplateUrl: '=?',
                 editItemButtonTemplateUrl: '=?',
+                noItemsLabel: '=?',
                 stateLabel: '=?',
+                isReadOnly: '=?',
+                areItemsReadOnly: '=?',
+                areGroupsReadOnly: '=?',
+                areNewItemButtonsHidden: '=?',
+                areEditItemButtonsHidden: '=?',
+                areEditGroupButtonsHidden: '=?',
                 newItemButtonText: '=?',
                 newItemButtonToolTip: '=?',
                 editItemButtonText: '=?',
@@ -106,9 +113,9 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     return maxState;
                 };
                 if (!this.groupWidth)
-                    this.groupWidth = '50%';
+                    this.groupWidth = '15%';
                 if (!this.stateWidth)
-                    this.stateWidth = '100%';
+                    this.stateWidth = (85 / this.states.length) + '%';
                 if (!this.itemHeight)
                     this.itemHeight = 56;
                 if (!this.groupHeight)
@@ -143,6 +150,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     this.groups.splice(index, 1);
                     this.groups.splice(targetIndex, 0, group);
                 };
+                if (!this.noItemsLabel)
+                    this.noItemsLabel = 'No items';
                 if (!this.stateLabel)
                     this.stateLabel = 'State';
                 if (!this.editItemButtonText)
@@ -221,6 +230,7 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     var index = parseInt(infoSeparatorIndex >= 0 ? itemInfo.substr(infoSeparatorIndex + 1) : itemInfo);
                     scope.onDrop({ itemType: itemType, index: index });
                     scope.$apply();
+                    event.preventDefault();
                 }
                 element.addEventListener('dragover', onDragOver);
                 element.addEventListener('drop', onDrop);
