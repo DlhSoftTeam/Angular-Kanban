@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Kanban - Gantt Chart Integration Sample</title>
+    <!-- Angular framwork. -->
+    <script src="Scripts/angular.min.js"></script>
+    <!-- DlhSoft Gantt Chart component and style references. TypeScript definitions: Scripts/DlhSoft.ProjectData.GanttChart.HTML.Controls.d.ts. -->
+    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css" />
+    <script src="Scripts/DlhSoft.ProjectData.GanttChart.HTML.Controls.js"></script>
+    <script src="Scripts/DlhSoft.ProjectData.GanttChart.Angular.Directives.js"></script>
+    <!-- DlhSoft Kanban component and style references. TypeScript: DlhSoft.Kanban.Angular.Components.ts. -->
+    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css" />
+    <script src="DlhSoft.Kanban.Angular.Components.js"></script>
+    <!-- Sample application code and style references. TypeScript: app.ts. -->
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="app.js"></script>
+</head>
+<!-- Sample application user interface. -->
+<body ng-app="KanbanGanttChartIntegrationSample" ng-controller="MainController">
+    <header>
+        <h1>Kanban - Gantt Chart Integration Sample</h1>
+        <p>Uses <a href="http://DlhSoft.com/GanttChartHyperLibrary/Download.aspx?Edition=701" target="_blank">Angular extension</a> for <em>GanttChartView</em> component of <a href="http://DlhSoft.com/GanttChartHyperLibrary" target="_blank">DlhSoft Gantt Chart Hyper Library</a>.</p>
+    </header>
+    <div class="area">
+        <!-- Gantt Chart component. -->
+        <ds:gantt-chart items="ganttChartItems" settings="ganttChartSettings"
+                        auto-refresh="{{ true }}"
+                        style="min-height: 240px">
+        </ds:gantt-chart>
+    </div>
+    <div class="area">
+        <!-- Kanban board component. -->
+        <ds:kanban-board items="kanbanItems" groups="stories" states="states"
+                         are-new-item-buttons-hidden="true"
+                         can-move-item="canMoveKanbanItem(item, state, group)"
+                         on-item-state-changed="onKanbanItemStateChanged(item, state)">
+        </ds:kanban-board>
+    </div>
+</body>
+</html>

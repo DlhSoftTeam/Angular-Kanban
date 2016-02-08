@@ -1,0 +1,15 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+header {
+    background-color: #dce8c0;
+    padding: 2px 16px;
+    border-bottom: 12px solid #80677a;
+}
+h1 {
+    margin-bottom: -8px;    
+}
+.area {
+    margin: 16px;
+}

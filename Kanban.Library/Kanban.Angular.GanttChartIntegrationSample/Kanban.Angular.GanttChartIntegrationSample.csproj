@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.css" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.css" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-state.html" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\DlhSoft.Data.Angular.Directives.js" />
+    <Content Include="Scripts\DlhSoft.Data.HTML.Controls.js" />
+    <Content Include="Scripts\DlhSoft.HierarchicalData.HTML.Controls.js" />
+    <Content Include="Scripts\DlhSoft.ProjectData.GanttChart.Angular.Directives.js" />
+    <Content Include="Scripts\DlhSoft.ProjectData.GanttChart.HTML.Controls.Extras.js" />
+    <Content Include="Scripts\DlhSoft.ProjectData.GanttChart.HTML.Controls.js" />
+    <Content Include="Scripts\DlhSoft.ProjectData.PertChart.Angular.Directives.js" />
+    <Content Include="Scripts\DlhSoft.ProjectData.PertChart.HTML.Controls.js" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="DlhSoft.Kanban.Angular.Components.ts" />
+    <TypeScriptCompile Include="Scripts\DlhSoft.Data.HTML.Controls.d.ts" />
+    <TypeScriptCompile Include="Scripts\DlhSoft.HierarchicalData.HTML.Controls.d.ts" />
+    <TypeScriptCompile Include="Scripts\DlhSoft.ProjectData.GanttChart.HTML.Controls.d.ts" />
+    <TypeScriptCompile Include="Scripts\DlhSoft.ProjectData.GanttChart.HTML.Controls.Extras.d.ts" />
+    <TypeScriptCompile Include="Scripts\DlhSoft.ProjectData.PertChart.HTML.Controls.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="packages.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Kanban.Angular.GanttChartIntegrationSample</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61956</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61956/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(SolutionDir)\Kanban.Angular.Components\DlhSoft.Kanban.Angular.Components.*" "$(ProjectDir)"
+copy "$(SolutionDir)\Kanban.Angular.Components\DlhSoft.Kanban.Angular.Components\*.*" "$(ProjectDir)\DlhSoft.Kanban.Angular.Components\"
+</PreBuildEvent>
+  </PropertyGroup>
+</Project>

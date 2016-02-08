@@ -5,19 +5,18 @@
     <title>Kanban Board Sample</title>
     <!-- Angular framwork. -->
     <script src="Scripts/angular.min.js"></script>
-    <!-- DlhSoft component and style references. TypeScript: DlhSoft.Kanban.Angular.Components.ts. -->
+    <!-- DlhSoft component references. TypeScript: DlhSoft.Kanban.Angular.Components.ts. -->
+    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css" />
     <script src="DlhSoft.Kanban.Angular.Components.js"></script>
-    <link rel="stylesheet" href="DlhSoft.Kanban.Angular.Components.css" type="text/css"/>
-    <!-- Sample application code and style references. TypeScript: app.ts. -->
+    <!-- Sample application references. TypeScript: app.ts. -->
+    <link rel="stylesheet" href="app.css" type="text/css" />
     <script src="app.js"></script>
-    <link rel="stylesheet" href="app.css" type="text/css"/>
 </head>
 <!-- Sample application user interface. -->
 <body ng-app="KanbanBoardSample" ng-controller="MainController">
     <h1>Kanban Board Sample</h1>
     <!-- Kanban board component. -->
-    <ds:kanban-board items="items" groups="groups" states="states"
-                     assignable-resources="assignableResources"
+    <ds:kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources"
                      on-adding-new-item="initializeNewItem(item)" on-editing-item="deleteItem(item)"
                      edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'"
                      on-item-state-changed="onItemStateChanged(item, state)" on-item-group-changed="onItemGroupChanged(item, group)">

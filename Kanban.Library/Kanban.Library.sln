@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Angular.Components", "Kanban.Angular.Components\Kanban.Angular.Components.csproj", "{F2145FB9-6AB0-4887-B6EE-765BC7CC4360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Angular.GanttChartIntegrationSample", "Kanban.Angular.GanttChartIntegrationSample\Kanban.Angular.GanttChartIntegrationSample.csproj", "{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F2145FB9-6AB0-4887-B6EE-765BC7CC4360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2145FB9-6AB0-4887-B6EE-765BC7CC4360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2145FB9-6AB0-4887-B6EE-765BC7CC4360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CBD8A8-1BDD-48BA-916D-ED7317A5EA20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
