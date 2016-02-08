@@ -23,7 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="app.js" />
     <Content Include="DlhSoft.Kanban.Angular.Components.css" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.js" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
     <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
