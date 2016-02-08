@@ -23,6 +23,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.css" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-state.html" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
@@ -39,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="DlhSoft.Kanban.Angular.Components.ts" />
     <TypeScriptCompile Include="Scripts\DlhSoft.Data.HTML.Controls.d.ts" />
     <TypeScriptCompile Include="Scripts\DlhSoft.HierarchicalData.HTML.Controls.d.ts" />
     <TypeScriptCompile Include="Scripts\DlhSoft.ProjectData.GanttChart.HTML.Controls.d.ts" />
@@ -55,9 +61,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DlhSoft.Kanban.Angular.Components\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
