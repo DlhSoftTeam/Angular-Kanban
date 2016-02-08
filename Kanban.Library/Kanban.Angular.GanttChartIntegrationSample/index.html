@@ -20,21 +20,21 @@
 <body ng-app="KanbanGanttChartIntegrationSample" ng-controller="MainController">
     <header>
         <h1>Kanban - Gantt Chart Integration Sample</h1>
-        <p>Uses <a href="http://DlhSoft.com/GanttChartHyperLibrary/Download.aspx?Edition=701" target="_blank">Angular extension</a> for <em>GanttChartView</em> component of <a href="http://DlhSoft.com/GanttChartHyperLibrary" target="_blank">DlhSoft Gantt Chart Hyper Library</a>.</p>
+        <p>Uses the <a href="http://DlhSoft.com/GanttChartHyperLibrary/Download.aspx?Edition=701" target="_blank">Angular extension</a> for <em>GanttChartView</em> component of <a href="http://DlhSoft.com/GanttChartHyperLibrary" target="_blank">DlhSoft Gantt Chart Hyper Library</a>.</p>
     </header>
     <div class="area">
         <!-- Gantt Chart component. -->
-        <ds:gantt-chart items="ganttChartItems" settings="ganttChartSettings"
-                        auto-refresh="{{ true }}"
+        <ds:gantt-chart items="ganttChartItems" settings="ganttChartSettings" 
+                        change="onGanttChartItemChanged" auto-refresh="{{ true }}"
                         style="min-height: 240px">
         </ds:gantt-chart>
     </div>
     <div class="area">
         <!-- Kanban board component. -->
-        <ds:kanban-board items="kanbanItems" groups="stories" states="states"
-                         are-new-item-buttons-hidden="true"
-                         can-move-item="canMoveKanbanItem(item, state, group)"
-                         on-item-state-changed="onKanbanItemStateChanged(item, state)">
+        <ds:kanban-board items="kanbanItems" groups="stories" states="states" item-name-field="'content'"
+                         are-new-item-buttons-hidden="true" can-move-item="canMoveKanbanItem(item, state, group)"
+                         on-item-state-changed="onKanbanItemStateChanged(item, state)"
+                         on-item-clicked="onKanbanItemClicked(item)">
         </ds:kanban-board>
     </div>
 </body>

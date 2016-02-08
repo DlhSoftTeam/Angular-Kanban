@@ -61,9 +61,8 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 states: '=?',
                 assignableResources: '=?',
                 types: '=?',
-                resourceNameField: '=?',
-                resourceImageUrlField: '=?',
-                resourceIsReadOnlyField: '=?',
+                itemNameField: '=?',
+                groupNameField: '=?',
                 defaultItemType: '=?',
                 defaultGroupType: '=?',
                 groupStates: '=?',
@@ -148,6 +147,10 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                     if (typeof group.isCollapsed === 'undefined')
                         group.isCollapsed = group.state ? group.state.isCollapsedByDefaultForGroups : false;
                 }
+                if (!this.itemNameField)
+                    this.itemNameField = 'name';
+                if (!this.groupNameField)
+                    this.groupNameField = this.itemNameField;
                 if (!this.types)
                     this.types = DlhSoft.Controls.KanbanBoard.defaultTypes;
                 if (!this.defaultItemType)

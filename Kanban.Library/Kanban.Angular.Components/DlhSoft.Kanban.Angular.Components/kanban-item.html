@@ -5,7 +5,7 @@
                 <td class="dskb-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }">&nbsp;</td>
                 <td class="dskb-item-content">
                     <div class="dskb-property dskb-property-editor">
-                        <input type="text" ng-model="item.name" readonly="readonly"/>
+                        <input type="text" ng-model="item[dskb.itemNameField]" readonly="readonly"/>
                     </div>
                     <table class="dskb-property dskb-property-editor dskb-property-table">
                         <tr>
@@ -29,7 +29,7 @@
         </div>
         <div ng-hide="dskb.areItemsReadOnly || item.isItemReadOnly || item.group.areItemsReadOnly || item.state.areItemsReadOnly" class="dskb-properties-container">
             <div class="dskb-property dskb-property-editor">
-                <input type="text" ng-model="item.name"/>
+                <input type="text" ng-model="item[dskb.itemNameField]"/>
             </div>
             <table ng-if="dskb.assignableResources" class="dskb-property dskb-property-editor dskb-property-table">
                 <tr>

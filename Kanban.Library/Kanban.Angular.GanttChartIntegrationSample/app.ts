@@ -6,49 +6,79 @@ import GanttChartView = DlhSoft.Controls.GanttChartView;
 import TaskItem = GanttChartView.Item;
 import PredecessorItem = GanttChartView.PredecessorItem;
 
+interface KanbanItem extends TaskItem
+{
+    group?: TaskItem;
+    state?: any;
+}
+
 angular.module('KanbanGanttChartIntegrationSample', ['DlhSoft.Kanban.Angular.Components', 'DlhSoft.ProjectData.GanttChart.Directives'])
     .controller('MainController', function ($scope) {
-        // Prepare Gantt Chart data items.
+        // Prepare Gantt Chart data items and settings.
         var ganttChartItems = <TaskItem[]>[
             { content: 'Story A' },
-            { content: "Task 1", indentation: 1, start: new Date(2013, 8 - 1, 22, 08), finish: new Date(2013, 8 - 1, 23, 12), completedFinish: new Date(2013, 8 - 1, 23, 12), assignmentsContent: "Resource 1" },
-            { content: "Task 2", indentation: 1, start: new Date(2013, 8 - 1, 23, 08), finish: new Date(2013, 8 - 1, 23, 16) },
+            { content: 'Task 1', indentation: 1, start: new Date(2016, 2 - 1, 11, 08), finish: new Date(2016, 2 - 1, 12, 12), completedFinish: new Date(2016, 2 - 1, 12, 12) },
+            { content: 'Task 2', indentation: 1, start: new Date(2016, 2 - 1, 12, 08), finish: new Date(2016, 2 - 1, 12, 16) },
             { content: 'Story B' },
-            { content: "Task 3", indentation: 1, start: new Date(2013, 8 - 1, 26, 08), finish: new Date(2013, 8 - 1, 26, 16), completedFinish: new Date(2013, 8 - 1, 26, 12), assignmentsContent: "Resource 2" },
-            { content: "Task 4", indentation: 1, start: new Date(2013, 8 - 1, 26, 08), finish: new Date(2013, 8 - 1, 27, 16), assignmentsContent: "Resource 1" },
-            { content: "Task 5", indentation: 1, start: new Date(2013, 8 - 1, 27, 08), finish: new Date(2013, 8 - 1, 28, 16) }];
+            { content: 'Task 3', indentation: 1, start: new Date(2016, 2 - 1, 15, 08), finish: new Date(2016, 2 - 1, 15, 16), completedFinish: new Date(2016, 2 - 1, 15, 12) },
+            { content: 'Task 4', indentation: 1, start: new Date(2016, 2 - 1, 15, 08), finish: new Date(2016, 2 - 1, 16, 16) },
+            { content: 'Task 5', indentation: 1, start: new Date(2016, 2 - 1, 16, 08), finish: new Date(2016, 2 - 1, 17, 16) },
+            { content: 'Task 6', indentation: 1, start: new Date(2016, 2 - 1, 16, 08), finish: new Date(2016, 2 - 1, 19, 16) }];
         $scope.ganttChartItems = ganttChartItems;
-        // Prepare Gantt Chart configuration settings.
         var ganttChartSettings = <GanttChartView.Settings>{
-            currentTime: new Date(2013, 8 - 1, 22), // Display the current time vertical line of the chart at the project start date.
-            isReadOnly: true
+            selectionMode: 'None',
+            currentTime: new Date(2016, 2 - 1, 12) // Display the current time vertical line of the chart at the project start date.
         }
         $scope.ganttChartSettings = ganttChartSettings;
-
+        $scope.onGanttChartItemChanged = (item, propertyName, isDirect, isFinal) => {
+            if (!isDirect || !isFinal) // Skip internal changes, and changes occurred during drag operations.
+                return;
+            switch (propertyName) {
+                case 'completedFinish':
+                    updateItemState(item); // Update state when completion percentage changes.
+                    refresh();
+                    break;
+                case 'content':
+                    refresh();
+                    break;
+            }
+        };
         // Prepare Kanban data items based on Gantt Chart items.
         var newState = { name: 'New' }, inProgressState = { name: 'In progress', isNewItemButtonHidden: true }, doneState = { name: 'Done', isCollapsedByDefaultForGroups: true, isNewItemButtonHidden: true };
         var states = [newState, inProgressState, doneState];
         $scope.states = states;
-        var kanbanItems = [], stories = [], currentStory;
+        var kanbanItems = <KanbanItem[]>[], stories = <KanbanItem[]>[], story: KanbanItem;
         for (var i = 0; i < ganttChartItems.length; i++) {
             var ganttChartItem = ganttChartItems[i];
             if (!ganttChartItem.indentation) {
-                currentStory = { name: ganttChartItem.content, state: newState, ganttChartItem: ganttChartItem };
-                stories.push(currentStory);
+                story = <KanbanItem>ganttChartItem;
+                story.state = newState;
+                stories.push(story);
             }
             else {
-                var state = ganttChartItem.completedFinish > ganttChartItem.start ? (ganttChartItem.completedFinish < ganttChartItem.finish ? inProgressState : doneState) : newState;
-                var item = { name: ganttChartItem.content, group: currentStory, state: state, ganttChartItem: ganttChartItem };
+                var item = <KanbanItem>ganttChartItem;
+                item.group = story; // Set the previously defined story as the parent of this item.
+                updateItemState(item);
                 kanbanItems.push(item);
             }
         }
         $scope.stories = stories;
         $scope.kanbanItems = kanbanItems;
-        $scope.canMoveKanbanItem = (item, state, group) => {
-            return group === item.group;
+        // In this sample application we only allow changing state for an item using a drag and drop operation, and not its parent story.
+        $scope.canMoveKanbanItem = (item: KanbanItem, state, group: KanbanItem) => { return group == item.group; };
+        // When state changes, update completion percent accordingly.
+        $scope.onKanbanItemStateChanged = (item: KanbanItem, state) => { updateCompletedFinish(item); };
+        // Internal functions.
+        function updateItemState(item: KanbanItem) {
+            var updatedState = !item.completedFinish || item.completedFinish <= item.start ? newState : (item.completedFinish >= item.finish ? doneState : inProgressState);
+            if (updatedState != item.state)
+                item.state = updatedState;
         };
-        $scope.onKanbanItemStateChanged = (item, state) => {
-            var ganttChartItem = item.ganttChartItem;
-            ganttChartItem.completedFinish = state == newState ? ganttChartItem.start : (state == doneState ? ganttChartItem.finish : new Date((ganttChartItem.start.valueOf() + ganttChartItem.finish.valueOf()) / 2));
-        };
+        function updateCompletedFinish(item: KanbanItem) {
+            var updatedCompletedFinish = item.state == newState ? item.start : (item.state == doneState ? item.finish : new Date((item.start.valueOf() + item.finish.valueOf()) / 2));
+            item.completedFinish = updatedCompletedFinish;
+        }
+        function refresh(): void {
+            $scope.$apply();
+        }
     });

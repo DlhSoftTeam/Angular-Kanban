@@ -5,7 +5,7 @@
                 <td class="dskb-gripper" ng-style="{ backgroundColor: group.color ? group.color : (group.type ? group.type.color : dskb.defaultGroupType.color) }">&nbsp;</td>
                 <td class="dskb-group-content">
                     <div class="dskb-property dskb-property-editor">
-                        <input type="text" ng-model="group.name" readonly="readonly"/>
+                        <input type="text" ng-model="group[dskb.groupNameField]" readonly="readonly"/>
                     </div>
                     <table ng-hide="group.isCollapsed" class="dskb-property dskb-property-editor dskb-property-table">
                         <tr>
@@ -39,7 +39,7 @@
         </div>
         <div ng-hide="dskb.areItemsReadOnly || dskb.areGroupsReadOnly || group.isItemReadOnly || group.isGroupReadOnly" class="dskb-properties-container">
             <div class="dskb-property">
-                <input type="text" ng-model="group.name"/>
+                <input type="text" ng-model="group[dskb.groupNameField]"/>
             </div>
             <table ng-hide="group.isCollapsed" class="dskb-property dskb-property-editor dskb-property-table">
                 <tr>
