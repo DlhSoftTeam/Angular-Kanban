@@ -73,25 +73,48 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 newItemResource: '=?',
                 onAddingNewItem: '&?',
                 onEditingItem: '&?',
-                onEditingGroup: '&?'
+                onEditingGroup: '&?',
+                onItemStateChanged: '&?',
+                onItemGroupChanged: '&?',
+                onItemIndexChanged: '&?',
+                onGroupIndexChanged: '&?'
             },
-            controller: function($scope) {
+            controller: function ($scope) {
+                var setItemState = (item, state) => {
+                    var previousState = item.state;
+                    item.state = state;
+                    if (this.onItemStateChanged)
+                        this.onItemStateChanged({ item: item, state: state, previousState: previousState });
+                };
+                var setItemGroup = (item, group) => {
+                    var previousGroup = item.group;
+                    item.group = group;
+                    if (this.onItemGroupChanged)
+                        this.onItemGroupChanged({ item: item, group: group, previousGroup: previousGroup });
+                };
                 if (!this.groups) {
-                    for (var i = 0; i < this.items.length; i++)
-                        this.items[i].group = DlhSoft.Controls.KanbanBoard.defaultGroup;
+                    for (var i = 0; i < this.items.length; i++) {
+                        var item = this.items[i];
+                        setItemGroup(item, DlhSoft.Controls.KanbanBoard.defaultGroup);
+                    }
                     this.groups = [DlhSoft.Controls.KanbanBoard.defaultGroup];
                     this.hideGroups = true;
                 }
-                if (!this.states)
+                if (!this.states) {
+                    for (var i = 0; i < this.items.length; i++) {
+                        var item = this.items[i];
+                        setItemState(item, DlhSoft.Controls.KanbanBoard.defaultStates[0]);
+                    }
                     this.states = DlhSoft.Controls.KanbanBoard.defaultStates;
+                }
                 if (!this.groupStates)
                     this.groupStates = this.states;
                 for (var i = 0; i < this.items.length; i++) {
                     var item = this.items[i];
                     if (!item.group || this.groups.indexOf(item.group) < 0)
-                        item.group = this.groups[0];
+                        setItemGroup(item, this.groups[0]);
                     if (!item.state || this.states.indexOf(item.state) < 0)
-                        item.state = this.states[0];
+                        setItemState(item, this.states[0]);
                 }
                 if (!this.types)
                     this.types = DlhSoft.Controls.KanbanBoard.defaultTypes;
@@ -133,22 +156,28 @@ angular.module('DlhSoft.Kanban.Angular.Components', [])
                 if (!this.editItemButtonTemplateUrl)
                     this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
                 this.onItemDrop = function (itemType, index, group, state, targetIndex) {
-                    if (itemType !== 'item')
+                    if (itemType !== 'item' || targetIndex === index)
                         return;
                     var item = this.items[index];
-                    item.group = group;
-                    item.state = state;
+                    if (group != item.group)
+                        setItemGroup(item, group);
+                    if (state != item.state)
+                        setItemState(item, state);
                     if (typeof targetIndex !== 'undefined') {
                         this.items.splice(index, 1);
                         this.items.splice(targetIndex, 0, item);
+                        if (this.onItemIndexChanged)
+                            this.onItemIndexChanged({ item: item, index: targetIndex, previousIndex: index });
                     }
                 };
                 this.onGroupDrop = function (itemType, index, targetIndex) {
-                    if (itemType !== 'group')
+                    if (itemType !== 'group' || targetIndex === index)
                         return;
                     var group = this.groups[index];
                     this.groups.splice(index, 1);
                     this.groups.splice(targetIndex, 0, group);
+                    if (this.onGroupIndexChanged)
+                        this.onGroupIndexChanged({ group: group, index: targetIndex, previousIndex: index });
                 };
                 if (!this.noItemsLabel)
                     this.noItemsLabel = 'No items';

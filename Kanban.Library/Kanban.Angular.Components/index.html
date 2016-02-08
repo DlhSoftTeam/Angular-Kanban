@@ -19,7 +19,8 @@
     <ds:kanban-board items="items" groups="groups" states="states"
                      assignable-resources="assignableResources"
                      on-adding-new-item="initializeNewItem(item)" on-editing-item="deleteItem(item)"
-                     edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'">
+                     edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'"
+                     on-item-state-changed="onItemStateChanged(item, state)" on-item-group-changed="onItemGroupChanged(item, group)">
     </ds:kanban-board>
     <!-- External drop zone panel: supports handling dropping Kanban items. -->
     <ds:kanban-item-drop-zone on-drop="moveItemToNextIteration(itemType, index)"

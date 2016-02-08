@@ -32,11 +32,21 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
         // Initialize a newly created item before adding it to the user interface.
         $scope.initializeNewItem = (item) => {
             item.assignedResource = resource1;
+            console.log('A new item was created.');
         };
 
         // Allow item deletion by clicking a button in the user interface.
         $scope.deleteItem = (item) => {
             items.splice(items.indexOf(item), 1);
+            console.log('Item ' + item.name + ' was deleted.');
+        };
+
+        // Handle changes.
+        $scope.onItemStateChanged = (item, state) => {
+            console.log('State of ' + item.name + ' was changed to: ' + state.name);
+        };
+        $scope.onItemGroupChanged = (item, group) => {
+            console.log('Group of ' + item.name + ' was changed to: ' + group.name);
         };
 
         // Move items to the next iteration.
@@ -55,6 +65,7 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
                 groups.splice(index, 1);
                 if (nextIteration.groups.indexOf(group) < 0)
                     nextIteration.groups.push(group);
+                console.log('Group ' + group.name + ' and its items were moved to next iteration.');
             } else {
                 // Move a single item, and copy the group (story) if needed.
                 var item = items[index];
@@ -63,6 +74,7 @@ angular.module('KanbanBoardSample', ['DlhSoft.Kanban.Angular.Components'])
                 var group = item.group;
                 if (nextIteration.groups.indexOf(group) < 0)
                     nextIteration.groups.push(group);
+                console.log('Item ' + item.name + ' was moved to next iteration.');
             }
         };
     });
