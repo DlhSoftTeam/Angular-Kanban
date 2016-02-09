@@ -23,6 +23,15 @@ var items: KanbanItem[] = [
     { name: 'Task 7', group: group2, state: state2, assignedResource: resource1 },
     { name: 'Task 8', group: group2, state: state3, assignedResource: resource2 }
 ];
+// Uncomment the following code lines to load more groups and items.
+// for (var i = 3; i <= 10; i++) {
+//    var group: KanbanGroup = { name: 'Story ' + i, assignedResource: resource1 };
+//    groups.push(group);
+//    for (var j = 1; j <= 10; j++) {
+//        var item: KanbanItem = { name: 'Item ' + i + '.' + j, group: group, state: j % 2 == 0 ? state1 : state2, assignedResource: resource1 };
+//        items.push(item);
+//    }
+// }
 var nextIteration = { groups: [], items: [] };
 
 declare var angular;

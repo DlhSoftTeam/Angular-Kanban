@@ -28,7 +28,7 @@ var DlhSoft;
             KanbanBoard.DefaultItemTypes = DefaultItemTypes;
             KanbanBoard.defaultItemTypes = {
                 task: { color: '#ffd800', backgroundColor: 'white' },
-                bug: { color: '#ca3838', backgroundColor: '#fff0f0' },
+                bug: { color: '#ca3838', backgroundColor: '#fff8f4' },
                 story: { color: '#0094ff', backgroundColor: 'white' },
                 feature: { color: '#67157b', backgroundColor: 'white' },
                 epic: { color: '#ff6a00', backgroundColor: 'white' }
