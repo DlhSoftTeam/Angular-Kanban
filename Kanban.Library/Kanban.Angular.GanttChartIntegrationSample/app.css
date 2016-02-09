@@ -4,8 +4,9 @@
 }
 header {
     background-color: #f2f2e8;
-    border-bottom: 4px solid #758d5c;
-    padding: 2px 16px;
+    border-bottom: 6px solid #758d5c;
+    padding: 2px 14px;
+    color: #404040;
     margin-bottom: 16px;
 }
 header p.description {

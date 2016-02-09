@@ -33,8 +33,7 @@
         <!-- Kanban board component. -->
         <ds:kanban-board items="kanbanItems" groups="stories" states="states" item-name-field="'content'"
                          are-new-item-buttons-hidden="true" can-move-item="canMoveKanbanItem(item, state, group)"
-                         on-item-state-changed="onKanbanItemStateChanged(item, state)"
-                         on-item-clicked="onKanbanItemClicked(item)">
+                         on-item-state-changed="onKanbanItemStateChanged(item, state)">
         </ds:kanban-board>
     </div>
 </body>

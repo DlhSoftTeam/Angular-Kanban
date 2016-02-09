@@ -1,8 +1,8 @@
 ﻿<div ng-mouseenter="isHovered = true" ng-mouseleave="isHovered = false" class="dskb-item-container">
-    <div class="dskb-item" ds:kanban-draggable-item drag-index="{{ dskb.items.indexOf(item) }}" is-dragging-parent="true" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
+    <div class="dskb-item" ds:kanban-draggable-item drag-type="dskb.itemType" drag-index="dskb.items.indexOf(item)" is-dragging-parent="true" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.itemType && item.itemType.backgroundColor ? item.itemType.backgroundColor : dskb.defaultItemType.backgroundColor) }">
         <table>
             <tr>
-                <td class="dskb-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.type ? item.type.color : dskb.defaultItemType.color) }">&nbsp;</td>
+                <td class="dskb-gripper" ng-style="{ backgroundColor: item.color ? item.color : (item.itemType ? item.itemType.color : dskb.defaultItemType.color) }">&nbsp;</td>
                 <td class="dskb-item-content">
                     <div class="dskb-property dskb-property-editor">
                         <input type="text" ng-model="item[dskb.itemNameField]" readonly="readonly"/>
@@ -21,9 +21,9 @@
             </tr>
         </table>
     </div>
-    <div ng-hide="dskb.isReadOnly || item.isReadOnly || item.group.isReadOnly || item.state.isReadOnly" class="dskb-editors-area" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.type && item.type.backgroundColor ? item.type.backgroundColor : dskb.defaultItemType.backgroundColor) }">
+    <div ng-hide="dskb.isReadOnly || item.isReadOnly || item.group.isReadOnly || item.state.isReadOnly" class="dskb-editors-area" ng-style="{ backgroundColor: item.backgroundColor ? item.backgroundColor : (item.itemType && item.itemType.backgroundColor ? item.itemType.backgroundColor : dskb.defaultItemType.backgroundColor) }">
         <div class="dskb-item-commands-container" ng-show="dskb.onEditingItem && isHovered">
-            <a ng-hide="dskb.areEditItemButtonsHidden || item.isEditItemButtonHidden || item.state.isEditItemButtonHidden || item.group.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})" class="dskb-button dskb-edit-button" title="{{ dskb.editItemButtonToolTip }}">
+            <a ng-hide="dskb.areEditItemButtonsHidden || item.isEditItemButtonHidden || item.state.areEditItemButtonsHidden || item.group.areEditItemButtonsHidden" href="javascript://" ng-click="dskb.onEditingItem({item: item})" class="dskb-button dskb-edit-button" title="{{ dskb.editItemButtonToolTip }}">
                 {{ dskb.editItemButtonText }}
             </a>
         </div>

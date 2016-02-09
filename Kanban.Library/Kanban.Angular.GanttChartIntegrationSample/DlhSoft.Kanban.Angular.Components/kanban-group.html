@@ -1,8 +1,8 @@
 ﻿<div ng-mouseenter="isHovered = true" ng-mouseleave="isHovered = false">
-    <div class="dskb-group" ds:kanban-draggable-item drag-item-type="group" drag-index="{{ dskb.groups.indexOf(group) }}" is-dragging-parent="true" ng-style="{ backgroundColor: group.backgroundColor ? group.backgroundColor : (group.type && group.type.backgroundColor ? group.type.backgroundColor : dskb.defaultGroupType.backgroundColor) }">
+    <div class="dskb-group" ds:kanban-draggable-item drag-type="dskb.groupType" drag-index="dskb.groups.indexOf(group)" is-dragging-parent="true" ng-style="{ backgroundColor: group.backgroundColor ? group.backgroundColor : (group.itemType && group.itemType.backgroundColor ? group.itemType.backgroundColor : dskb.defaultGroupType.backgroundColor) }">
         <table>
             <tr>
-                <td class="dskb-gripper" ng-style="{ backgroundColor: group.color ? group.color : (group.type ? group.type.color : dskb.defaultGroupType.color) }">&nbsp;</td>
+                <td class="dskb-gripper" ng-style="{ backgroundColor: group.color ? group.color : (group.itemType ? group.itemType.color : dskb.defaultGroupType.color) }">&nbsp;</td>
                 <td class="dskb-group-content">
                     <div class="dskb-property dskb-property-editor">
                         <input type="text" ng-model="group[dskb.groupNameField]" readonly="readonly"/>
@@ -31,9 +31,9 @@
             </tr>
         </table>
     </div>
-    <div ng-hide="dskb.isReadOnly || group.isReadOnly" class="dskb-editors-area dskb-group-editors-area" ng-style="{ backgroundColor: group.backgroundColor ? group.backgroundColor : (group.type && group.type.backgroundColor ? group.type.backgroundColor : dskb.defaultGroupType.backgroundColor) }">
+    <div ng-hide="dskb.isReadOnly || group.isReadOnly" class="dskb-editors-area dskb-group-editors-area" ng-style="{ backgroundColor: group.backgroundColor ? group.backgroundColor : (group.itemType && group.itemType.backgroundColor ? group.itemType.backgroundColor : dskb.defaultGroupType.backgroundColor) }">
         <div class="dskb-item-commands-container" ng-show="dskb.onEditingGroup && isHovered">
-            <a ng-hide="dskb.areEditItemButtonsHidden || dskb.areEditGroupButtonsHidden || group.isEditItemButtonHidden || group.state.isEditItemButtonHidden" href="javascript://" ng-click="dskb.onEditingGroup({group: group})" class="dskb-button dskb-edit-button" title="{{ dskb.editGroupButtonToolTip }}">
+            <a ng-hide="dskb.areEditItemButtonsHidden || dskb.areEditGroupButtonsHidden || group.isEditItemButtonHidden || group.state.areEditItemButtonsHidden" href="javascript://" ng-click="dskb.onEditingGroup({group: group})" class="dskb-button dskb-edit-button" title="{{ dskb.editGroupButtonToolTip }}">
                 {{ dskb.editGroupButtonText }}
             </a>
         </div>

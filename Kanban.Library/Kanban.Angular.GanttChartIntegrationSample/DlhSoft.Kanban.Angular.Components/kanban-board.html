@@ -26,19 +26,19 @@
                     </svg>
                 </td>
                 <td ng-if="!dskb.hideGroups" class="dskb-cell dskb-header dskb-row-header dskb-group-container">
-                    <div ng-style="{ height: (!group.isCollapsed ? dskb.groupHeight : dskb.collapsedGroupHeight) + 'px' }" class="dskb-content-box" ds:kanban-item-drop-zone can-drop="dskb.canDropGroup(itemType, index, dskb.groups.indexOf(group))" on-drop="dskb.onGroupDrop(itemType, index, dskb.groups.indexOf(group))">
-                        <ng-include src="group.templateUrl ? group.templateUrl : (group.type && group.type.templateUrl ? group.type.templateUrl : dskb.groupTemplateUrl)"/>
+                    <div ng-style="{ height: (!group.isCollapsed ? dskb.groupHeight : dskb.collapsedGroupHeight) + 'px' }" class="dskb-content-box" ds:kanban-item-drop-zone can-drop="dskb.canDropGroup(type, index, dskb.groups.indexOf(group))" on-drop="dskb.onGroupDrop(type, index, dskb.groups.indexOf(group))">
+                        <ng-include src="group.templateUrl ? group.templateUrl : (group.itemType && group.itemType.templateUrl ? group.itemType.templateUrl : dskb.groupTemplateUrl)"/>
                     </div>
                 </td>
                 <td ng-repeat="state in dskb.states" class="dskb-cell dskb-items-container">
-                    <div ng-hide="group.isCollapsed" ng-style="{ height: ((!group.isCollapsed ? dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length : 1) * dskb.itemHeight + (!dskb.isReadOnly && !dskb.areNewItemButtonsHidden && !dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 26 : 0)) + 'px' }">
-                        <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-item-drop-zone can-drop="dskb.canDropItem(itemType, index, group, state, dskb.items.indexOf(item))" on-drop="dskb.onItemDrop(itemType, index, group, state, dskb.items.indexOf(item))">
+                    <div ng-hide="group.isCollapsed" ng-style="{ height: ((!group.isCollapsed ? dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length : 1) * dskb.itemHeight + (!dskb.isReadOnly && !dskb.areNewItemButtonsHidden && !dskb.getMaxStateInGroup(group).isReadOnly && !dskb.getMaxStateInGroup(group).areNewItemButtonsHidden && !group.isReadOnly ? 26 : 0)) + 'px' }">
+                        <div ng-repeat="item in dskb.getItemsInGroupAndState(group, state)" ds:kanban-item-drop-zone can-drop="dskb.canDropItem(type, index, group, state, dskb.items.indexOf(item))" on-drop="dskb.onItemDrop(type, index, group, state, dskb.items.indexOf(item))">
                             <div ng-style="{ height: dskb.itemHeight + 'px' }" class="dskb-content-box">
-                                <ng-include src="item.templateUrl ? item.templateUrl : (item.type && item.type.templateUrl ? item.type.templateUrl : dskb.itemTemplateUrl)"/>
+                                <ng-include src="item.templateUrl ? item.templateUrl : (item.itemType && item.itemType.templateUrl ? item.itemType.templateUrl : dskb.itemTemplateUrl)"/>
                             </div>
                         </div>
-                        <div class="dskb-commands-container" ng-style="{ height: ((dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * dskb.itemHeight + (!dskb.isReadOnly && !dskb.areNewItemButtonsHidden && !dskb.getMaxStateInGroup(group).isNewItemButtonHidden ? 26 : 0)) + 'px' }" ds:kanban-item-drop-zone can-drop="dskb.canDropItem(itemType, index, group, state)" on-drop="dskb.onItemDrop(itemType, index, group, state)">
-                            <a href="javascript://" ng-hide="dskb.isReadOnly || dskb.areNewItemButtonsHidden || state.isNewItemButtonHidden || group.isNewItemButtonHidden" class="dskb-button dskb-new-item-command" ng-click="dskb.addNewItem(group, state)" title="{{ dskb.newItemButtonToolTip }}">
+                        <div class="dskb-commands-container" ng-style="{ height: ((dskb.getItemsInGroupAndState(group, dskb.getMaxStateInGroup(group)).length - dskb.getItemsInGroupAndState(group, state).length) * dskb.itemHeight + (!dskb.isReadOnly && !dskb.areNewItemButtonsHidden && !dskb.getMaxStateInGroup(group).isReadOnly && !dskb.getMaxStateInGroup(group).areNewItemButtonsHidden && !group.IsReadOnly ? 26 : 0)) + 'px' }" ds:kanban-item-drop-zone can-drop="dskb.canDropItem(type, index, group, state)" on-drop="dskb.onItemDrop(type, index, group, state)">
+                            <a href="javascript://" ng-hide="dskb.isReadOnly || dskb.areNewItemButtonsHidden || state.isReadOnly || state.areNewItemButtonsHidden || group.isReadOnly || group.areNewItemButtonsHidden" class="dskb-button dskb-new-item-command" ng-click="dskb.addNewItem(group, state)" title="{{ dskb.newItemButtonToolTip }}">
                                 {{ dskb.newItemButtonText }}
                             </a>
                         </div>

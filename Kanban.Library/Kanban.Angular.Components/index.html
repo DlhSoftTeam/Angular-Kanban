@@ -23,10 +23,10 @@
                      edit-item-button-text="'–'" edit-item-button-tool-tip="'Delete item'"
                      on-item-state-changed="onItemStateChanged(item, state)" on-item-group-changed="onItemGroupChanged(item, group)">
     </ds:kanban-board>
-    <!-- External drop zone panel: supports handling dropping Kanban items. -->
-    <ds:kanban-item-drop-zone on-drop="moveItemToNextIteration(itemType, index)"
+    <!-- Drop zone: provides support for dropping Kanban items to external user interface elements. -->
+    <ds:kanban-item-drop-zone on-drop="moveItemToNextIteration(type, index)"
                               class="next-iteration-panel" 
-                              title="Drag items to this external panel to move them to the next iteration.">
+                              title="Drag items to this external panel to set them as future work.">
         <div class="header">Next iteration - future work</div>
         <div class="content">
             <div class="value">{{ nextIteration.groups.length }} story(-ies)</div>
