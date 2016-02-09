@@ -198,15 +198,11 @@ var DlhSoft;
                         if (!this.collapsedGroupHeight)
                             this.collapsedGroupHeight = 36;
                         if (!this.itemTemplateUrl)
-                            this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-item.html';
+                            this.itemTemplateUrl = 'DlhSoft.Kanban.Angular.Components.Templates/kanban-item.html';
                         if (!this.groupTemplateUrl)
-                            this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-group.html';
+                            this.groupTemplateUrl = 'DlhSoft.Kanban.Angular.Components.Templates/kanban-group.html';
                         if (!this.stateTemplateUrl)
-                            this.stateTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-state.html';
-                        if (!this.newItemButtonTemplateUrl)
-                            this.newItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-new-item-button.html';
-                        if (!this.editItemButtonTemplateUrl)
-                            this.editItemButtonTemplateUrl = 'DlhSoft.Kanban.Angular.Components/kanban-edit-item-button.html';
+                            this.stateTemplateUrl = 'DlhSoft.Kanban.Angular.Components.Templates/kanban-state.html';
                         var setItemState = function (item, state) {
                             var previousState = item.state;
                             item.state = state;
@@ -287,7 +283,7 @@ var DlhSoft;
                         };
                     },
                     controllerAs: 'dskb',
-                    templateUrl: 'DlhSoft.Kanban.Angular.Components/kanban-board.html'
+                    templateUrl: 'DlhSoft.Kanban.Angular.Components.Templates/kanban-board.html'
                 };
             })
                 .directive('dsKanbanDraggableItem', function ($timeout) {

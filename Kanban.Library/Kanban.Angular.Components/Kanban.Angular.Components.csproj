@@ -26,13 +26,13 @@
     <Content Include="app.js" />
     <Content Include="DlhSoft.Kanban.Angular.Components.css" />
     <Content Include="DlhSoft.Kanban.Angular.Components.js" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-group.html" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-item.html" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-state.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.Templates\kanban-group.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.Templates\kanban-item.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.Templates\kanban-state.html" />
     <Content Include="Images\Resource1.png" />
     <Content Include="Images\Resource2.png" />
     <Content Include="index.html" />
-    <Content Include="DlhSoft.Kanban.Angular.Components\kanban-board.html" />
+    <Content Include="DlhSoft.Kanban.Angular.Components.Templates\kanban-board.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
