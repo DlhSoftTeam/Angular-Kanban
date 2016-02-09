@@ -1,14 +1,15 @@
 ﻿body {
-    font-family: 'Segoe UI', sans-serif;
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
 header {
-    background-color: #dce8c0;
+    background-color: #f2f2e8;
+    border-bottom: 4px solid #758d5c;
     padding: 2px 16px;
-    border-bottom: 12px solid #80677a;
+    margin-bottom: 16px;
 }
-h1 {
-    margin-bottom: -8px;    
+header p.description {
+    margin-top: -8px;    
 }
 .area {
     margin: 16px;

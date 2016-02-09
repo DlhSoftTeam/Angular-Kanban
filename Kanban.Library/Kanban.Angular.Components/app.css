@@ -1,9 +1,16 @@
 ﻿body {
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
+}
+header {
+    background-color: #f2f2e8;
+    border-bottom: 4px solid #758d5c;
+    padding: 2px 16px;
+    margin-bottom: 16px;
 }
 .next-iteration-panel {
     display: inline-block;
-    margin: 24px 14px;
+    margin: 8px 14px;
     border: 1px solid #c0c0c0;
     background: lightyellow;
     padding: 12px;
