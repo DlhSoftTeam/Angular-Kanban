@@ -3,8 +3,8 @@
     font-family: 'Segoe UI', sans-serif;
 }
 header {
-    background-color: #758d5c;
-    border-bottom: 10px solid #b7042c;
+    background-color: #b7042c;
+    border-bottom: 10px solid #f2f2e8;
     padding: 2px 14px;
     color: white;
     margin-bottom: 16px;
@@ -15,6 +15,22 @@ header a, header a:hover, header a:visited {
 header p.description {
     margin-top: -8px;    
 }
+.standard-gantt-chart-bar {
+    fill: #ffd800;
+}
+.standard-gantt-chart-completed-bar {
+    fill: #808080;
+}
 .area {
     margin: 16px;
+}
+hr {
+    border: 0;
+    border-top: 1px solid #f8f8f4;
+}
+.title {
+    color: #0094ff;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: larger;
 }

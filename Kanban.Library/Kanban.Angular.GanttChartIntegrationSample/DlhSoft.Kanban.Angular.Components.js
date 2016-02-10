@@ -194,7 +194,7 @@ var DlhSoft;
                         if (!this.itemHeight)
                             this.itemHeight = 56;
                         if (!this.groupHeight)
-                            this.groupHeight = 86;
+                            this.groupHeight = 88;
                         if (!this.collapsedGroupHeight)
                             this.collapsedGroupHeight = 36;
                         if (!this.itemTemplateUrl)
@@ -344,7 +344,9 @@ var DlhSoft;
                         }
                         element.addEventListener('dragover', onDragOver);
                         element.addEventListener('drop', onDrop);
+                        element.addEventListener('dragend', onDrop);
                         scope.$on('$destroy', function () {
+                            element.removeEventListener('dragend', onDrop);
                             element.removeEventListener('drop', onDrop);
                             element.removeEventListener('dragover', onDragOver);
                         });
