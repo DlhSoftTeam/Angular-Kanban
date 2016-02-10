@@ -220,7 +220,7 @@
                         if (!this.itemHeight)
                             this.itemHeight = 56;
                         if (!this.groupHeight)
-                            this.groupHeight = 88;
+                            this.groupHeight = 86;
                         if (!this.collapsedGroupHeight)
                             this.collapsedGroupHeight = 36;
                         if (!this.itemTemplateUrl)
@@ -370,9 +370,7 @@
                         }
                         element.addEventListener('dragover', onDragOver);
                         element.addEventListener('drop', onDrop);
-                        element.addEventListener('dragend', onDrop);
                         scope.$on('$destroy', (): void => {
-                            element.removeEventListener('dragend', onDrop);
                             element.removeEventListener('drop', onDrop);
                             element.removeEventListener('dragover', onDragOver);
                         });
