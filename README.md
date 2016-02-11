@@ -1,5 +1,6 @@
 # Angular-Kanban
 Kanban board component for AngularJS.
+![Kanban board](http://DlhSoft.com/KanbanLibrary/Documentation/Screenshots/KanbanBoard.png)
 ## Usage
 ```html
 <ds-kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources"
