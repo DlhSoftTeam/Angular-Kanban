@@ -75,4 +75,4 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
 
 ## Support
 This product is provided for free and "as is", so it doesn't include any official support.
-If you would like to receive full DlhSoft support for it, you can get it by [purchasing a product license](http://DlhSoft.com/KanbanBoard/Purchase.aspx).
+If you would like to receive full DlhSoft support for it, you can get it by [purchasing a product license](http://DlhSoft.com/KanbanLibrary/Purchase.aspx).
