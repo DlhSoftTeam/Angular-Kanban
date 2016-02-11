@@ -72,3 +72,7 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
   * <code>onAddingNewItem(item)</code>: function called when a new item is created and added to a group and state
   * <code>onEditingItem(item)</code>, <code>onEditingGroup(group)</code>: functions called when the end user initiate editing for an item or a group
   * <code>onItemStateChanged(item, state, previousState)</code>, <code>onItemGroupChanged(item, group, previousGroup)</code>: functions called when the end user drags and drops an item to a different state and/or group area.
+
+## Support
+This product is provided for free and "as is", so it doesn't include any official support.
+If you would like to receive full DlhSoft support for it, you can get it by [purchasing a product license](http://DlhSoft.com/KanbanBoard/Purchase.aspx).
