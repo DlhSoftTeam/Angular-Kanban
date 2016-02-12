@@ -1,6 +1,12 @@
 # Angular-Kanban
 Kanban board component for AngularJS.
 ![Kanban board](http://DlhSoft.com/KanbanLibrary/Documentation/Screenshots/KanbanBoard.png)
+Product: [DlhSoft Kanban Library](http://DlhSoft.com/KanbanLibrary)
+
+## Run demos
+ * [Kanban board](http://DlhSoft.com/KanbanLibrary/Demo)
+ * [Gantt Chart integration](http://DlhSoft.com/KanbanLibrary/Demo.GanttChartIntegration)
+
 ## Usage
 ```html
 <ds-kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources"
@@ -45,7 +51,7 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
     console.log('State of ' + item.name + ' was changed to: ' + state.name);
 };
 ```
-## Sample application
+## Demo source code
 <code>Kanban.Library/Kanban.Angular.Components</code>
 * HTML:       <code>index.html</code>
 * CSS:        <code>app.css</code>
