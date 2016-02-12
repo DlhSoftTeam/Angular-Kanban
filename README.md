@@ -51,13 +51,6 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
     console.log('State of ' + item.name + ' was changed to: ' + state.name);
 };
 ```
-## Demo source code
-<code>Kanban.Library/Kanban.Angular.Components</code>
-* HTML:       <code>index.html</code>
-* CSS:        <code>app.css</code>
-* TypeScript: <code>app-angular.ts</code>
-* JavaScript: <code>app-angular.js</code>
-
 ## <code>ds-kanban-board</code> directive
 * Available as: element, argument (e.g. on <code>div</code>), or as comment directive.
 * Transcludes content: to  title displayed in the header area of the board.
@@ -78,6 +71,13 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
   * <code>onAddingNewItem(item)</code>: function called when a new item is created and added to a group and state
   * <code>onEditingItem(item)</code>, <code>onEditingGroup(group)</code>: functions called when the end user initiate editing for an item or a group
   * <code>onItemStateChanged(item, state, previousState)</code>, <code>onItemGroupChanged(item, group, previousGroup)</code>: functions called when the end user drags and drops an item to a different state and/or group area.
+
+## Demo source code
+<code>Kanban.Library/Kanban.Angular.Components</code>
+* HTML:       <code>index.html</code>
+* CSS:        <code>app.css</code>
+* TypeScript: <code>app-angular.ts</code>
+* JavaScript: <code>app-angular.js</code>
 
 ## Support
 This product is provided for free and "as is", so it doesn't include any official support.
