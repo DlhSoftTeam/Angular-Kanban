@@ -38,7 +38,7 @@ angular.module('KanbanGanttChartIntegrationSample', ['DlhSoft.Kanban.Angular.Com
             { content: 'Task 5', indentation: 1, start: new Date(2016, 2 - 1, 16, 08), finish: new Date(2016, 2 - 1, 17, 16) },
             { content: 'Task 6', indentation: 1, start: new Date(2016, 2 - 1, 16, 08), finish: new Date(2016, 2 - 1, 19, 16) }];
         $scope.ganttChartItems = ganttChartItems;
-        $scope.ganttChartSettings = <DlhSoft.Controls.GanttChartView.Settings>{
+        $scope.ganttChartSettings = <GanttChartView.Settings>{
             selectionMode: 'None',
             standardBarClass: 'standard-gantt-chart-bar', standardCompletedBarClass: 'standard-gantt-chart-completed-bar',
             currentTime: new Date(2016, 2 - 1, 12) // Display the current time vertical line of the chart at the project start date.
