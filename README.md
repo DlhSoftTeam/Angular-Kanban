@@ -15,7 +15,7 @@ Kanban board component for AngularJS.
 <ds-kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources"
                  on-adding-new-item="initializeNewItem(item)" on-editing-item="editItem(item)"
                  on-item-state-changed="onItemStateChanged(item, state)">
-<ds-kanban-board>
+</ds-kanban-board>
 ```
 ```typescript
 var state1: KanbanState = { name: 'New' }, 
