@@ -8,7 +8,7 @@ var DlhSoft;
                 function Types() {
                 }
                 return Types;
-            })();
+            }());
             KanbanBoard.Types = Types;
             KanbanBoard.types = {
                 item: 'item',
@@ -24,7 +24,7 @@ var DlhSoft;
                 function DefaultItemTypes() {
                 }
                 return DefaultItemTypes;
-            })();
+            }());
             KanbanBoard.DefaultItemTypes = DefaultItemTypes;
             KanbanBoard.defaultItemTypes = {
                 task: { color: '#ffd800', backgroundColor: 'white' },
