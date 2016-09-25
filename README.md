@@ -10,6 +10,20 @@ Kanban board component for AngularJS.
  * [Kanban board](http://DlhSoft.com/KanbanLibrary/Demo)
  * [Gantt Chart integration](http://DlhSoft.com/KanbanLibrary/Demo.GanttChartIntegration)
 
+## Package installation
+ * NuGet: 
+   ```
+   Install-Package DlhSoft.KanbanLibrary
+   ```
+ * Bower:
+   ```
+   bower install http://DlhSoft.com/Packages/DlhSoft.KanbanLibrary.zip
+   ```
+ * Node:
+   ```
+   npm install http://DlhSoft.com/Packages/DlhSoft.KanbanLibrary.tar
+   ```
+
 ## Usage
 ```html
 <ds-kanban-board items="items" groups="groups" states="states" assignable-resources="assignableResources"
