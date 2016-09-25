@@ -1,10 +1,7 @@
 # Angular-Kanban
 Kanban board component for AngularJS.
 ![Kanban board](http://DlhSoft.com/KanbanLibrary/Documentation/Screenshots/KanbanBoard.png)
-
-## Links
- * Product page: [DlhSoft.com/KanbanLibrary](http://DlhSoft.com/KanbanLibrary)
- * NuGet package: [DlhSoft.KanbanLibrary](http://www.nuget.org/packages/DlhSoft.KanbanLibrary)
+* Product page: [DlhSoft.com/KanbanLibrary](http://DlhSoft.com/KanbanLibrary)
 
 ## Run demos
  * [Kanban board](http://DlhSoft.com/KanbanLibrary/Demo)
