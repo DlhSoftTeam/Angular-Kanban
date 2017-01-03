@@ -56,7 +56,7 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
 * Transcludes content: to  title displayed in the header area of the board.
 * Some accepted arguments
   * <code>items</code> (required): array of items (such as tasks), defined using <code>Item</code> type, having these members:
-    * <code>name</code>: string representing the item; may be overriden by the field defined by <code>itemNameField</code> or <code>groupNamefield</code> arguments of the directive
+    * <code>name</code>: string representing the item; may be overriden by the field defined by <code>itemNameField</code> or <code>groupNameField</code> arguments of the directive
     * <code>group</code>: reference to the group (from the <code>groups</code> array) indicating the vertical group area that the item should be displayed within (e.g. the story that the task belongs to)
     * <code>state</code>: reference to the state (from the <code>states</code> array) indicating the horizontal state area that the item should be displayed within (e.g. New, In progress, Done)
     * <code>itemType</code>: reference to the item type (from the <code>itemTypes</code> array) indicating the type of item (e.g. task, bug, story, feature)
