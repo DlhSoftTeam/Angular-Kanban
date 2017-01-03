@@ -127,6 +127,11 @@ var DlhSoft;
                     },
                     controller: function ($scope) {
                         var _this = this;
+                        // Force early binding to controller.
+                        for (var field in $scope) {
+                            if (this[field] === undefined && $scope[field] !== undefined)
+                                this[field] = $scope[field];
+                        }
                         if (!this.groups) {
                             for (var i = 0; i < this.items.length; i++) {
                                 var item = this.items[i];
