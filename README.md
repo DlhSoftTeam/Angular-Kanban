@@ -52,7 +52,7 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
 };
 ```
 ## <code>ds-kanban-board</code> directive
-* Available as: element, argument (e.g. on <code>div</code>), or as comment directive.
+* Available as: element, attribute (e.g. on <code>div</code>), or as comment directive.
 * Transcludes content: to  title displayed in the header area of the board.
 * Some accepted arguments
   * <code>items</code> (required): array of items (such as tasks), defined using <code>Item</code> type, having these members:
