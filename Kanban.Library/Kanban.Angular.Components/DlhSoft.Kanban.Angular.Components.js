@@ -211,6 +211,7 @@ var DlhSoft;
                         var setItemState = function (item, state) {
                             var previousState = item.state;
                             item.state = state;
+                            console.log(_this.onItemStateChanged);
                             if (_this.onItemStateChanged)
                                 _this.onItemStateChanged({ item: item, state: state, previousState: previousState });
                         };
@@ -288,7 +289,9 @@ var DlhSoft;
                         };
                     },
                     controllerAs: 'dskb',
-                    templateUrl: 'DlhSoft.Kanban.Angular.Components.Templates/kanban-board.html'
+                    templateUrl: function(elem,attrs) {
+                        return attrs.kanbanBoard
+                    }
                 };
             })
                 .directive('dsKanbanDraggableItem', function ($timeout) {
