@@ -211,7 +211,6 @@ var DlhSoft;
                         var setItemState = function (item, state) {
                             var previousState = item.state;
                             item.state = state;
-                            console.log(_this.onItemStateChanged);
                             if (_this.onItemStateChanged)
                                 _this.onItemStateChanged({ item: item, state: state, previousState: previousState });
                         };
