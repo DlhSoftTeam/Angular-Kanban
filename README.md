@@ -60,14 +60,14 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
     * <code>group</code>: reference to the group (from the <code>groups</code> array) indicating the vertical group area that the item should be displayed within (e.g. the story that the task belongs to)
     * <code>state</code>: reference to the state (from the <code>states</code> array) indicating the horizontal state area that the item should be displayed within (e.g. New, In progress, Done)
     * <code>itemType</code>: reference to the item type (from the <code>itemTypes</code> array) indicating the type of item (e.g. task, bug, story, feature)
-    * <code>assignedResource</code>: reference to the resource (from the <code>assignableResources</code> array) indicating the resource that the item is assigned to (e.g. an employee that need to perform work on a task)
+    * <code>assignedResource</code>: reference to the resource (from the <code>assignableResources</code> array) indicating the resource that the item is assigned to (e.g. an employee that needs to perform work on a task)
     * <code>color</code>: string indicating a color of the item, overriding the color of the item type (displayed as a left header area for the item rectangle)
     * <code>backgroundColor</code>: string indicating the background color of the item, overriding the color of the item type
     * <code>isReadOnly</code>: Boolean value indicating whether or not this item should be read only 
   * <code>groups</code>: array of groups (such as stories), defined using <code>Group</code> type; if not set, group headers area is not displayed, and items are all assigned to a default group behind the scenes
   * <code>states</code>:  array of states, defined using <code>State</code> type; defaults to a built-in array containing these states: New, Active, Resolved, Closed.
   * <code>assignableResources</code>: Array of available resources for item assignments, defined using <code>AssignableResource</code> type; if not set, resource assignment area is not displayed for items, and for groups it is replaced by a count of child items
-  * <code>isReadOnly</code>: Boolean value indicating whether or not all items should be read only
+  * <code>isReadOnly</code>: Boolean value indicating whether or not the component (i.e. all items) should be read only
   * <code>onAddingNewItem(item)</code>: function called when a new item is created and added to a group and state
   * <code>onEditingItem(item)</code>, <code>onEditingGroup(group)</code>: functions called when the end user initiate editing for an item or a group
   * <code>onItemStateChanged(item, state, previousState)</code>, <code>onItemGroupChanged(item, group, previousGroup)</code>: functions called when the end user drags and drops an item to a different state and/or group area.
@@ -95,4 +95,4 @@ $scope.onItemStateChanged = (item: KanbanItem, state: KanbanState): void => {
 
 ## Support
 This product is provided for free and "as is", so it doesn't include any official support.
-If you would like to receive full DlhSoft support for it, you can get it by [purchasing a product license](http://DlhSoft.com/KanbanLibrary/Purchase.aspx).
+If needed, however, you may [purchase a DlhSoft product license with support](http://DlhSoft.com/KanbanLibrary/Purchase.aspx).
